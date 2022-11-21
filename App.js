@@ -17,6 +17,7 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
+import { RegisterProvider } from './context';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,18 +44,20 @@ export default function App() {
 
     return (
       <>
-        <StatusBar style='auto' />
-        <NavigationContainer>
-          <Stack.Navigator 
-          screenOptions={{
-            headerShown: false
-          }}>
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <RegisterProvider>
+          <StatusBar style='auto' />
+          <NavigationContainer>
+            <Stack.Navigator 
+            screenOptions={{
+              headerShown: false
+            }}>
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RegisterProvider>
       </>
     );
   }
