@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { LogoHeader } from '../components';
 import { icons } from '../assets/data/data';
+import {Button} from "../components"
 
 const LoginScreen = () => {
 
@@ -61,16 +62,24 @@ const LoginScreen = () => {
                             <Text style={{fontSize: 18}}>+{formState.countryCode}</Text>
                         </TouchableOpacity>
 
-                        <TextInput keyboardType="numeric" style={textInputStyle} placeholder="Enter your phone" value={formState.phoneNumber} onChangeText={(text)=>{
-                            setFormState(prevState => {
-                                return(
-                                    {
-                                        ...prevState,
-                                        phoneNumber: text
-                                    }
-                                )
-                            })
-                        }}/>
+                        <TextInput 
+                            autoComplete='tel' 
+                            dataDetectorTypes="phoneNumber" 
+                            keyboardType="phone-pad" 
+                            style={textInputStyle} 
+                            placeholder="Enter your phone" 
+                            value={formState.phoneNumber} 
+                            onChangeText={(text)=>{
+                                setFormState(prevState => {
+                                    return(
+                                        {
+                                            ...prevState,
+                                            phoneNumber: text
+                                        }
+                                    )
+                                })
+                            }}
+                        />
 
                     </View>
                     
@@ -80,17 +89,9 @@ const LoginScreen = () => {
 
                     </Pressable>
 
-                    {buttonDisabled? (
-
-                        <Pressable style={buttonDisabledStyle}>
-                            <Text style={buttonText}>Continue</Text>
-                        </Pressable>
-                        
-                    ) : (
-                        <TouchableOpacity style={buttonStyle}>
-                            <Text style={buttonText}>Continue</Text>
-                        </TouchableOpacity>
-                    )}
+                    <Button buttonDisabled={buttonDisabled}>
+                        <Text style={buttonText}>Continue</Text>
+                    </Button>
 
                     <View style={dividerContainer}>
                     <View style={divider}></View>
