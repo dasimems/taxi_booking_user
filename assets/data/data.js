@@ -1,4 +1,9 @@
 import Logo from "../images/logo.png"
+import Google from "../icons/google_icon.png"
+import Apple from "../icons/apple_icon.png"
+import FaceId from "../icons/face_id.png"
+import Passenger from "../icons/passenger.png"
+import Driver from "../icons/driver.png"
 
 export const appName = "CarMeee"
 
@@ -33,6 +38,24 @@ export const navLinks = [
 
 export const images = {
     logo: Logo
+}
+
+export const userType = [
+    {
+        label: "Driver",
+        icon: Driver
+    },
+
+    {
+        label: "Passenger",
+        icon: Passenger
+    }
+]
+
+export const icons = {
+    google: Google,
+    apple: Apple,
+    faceId: FaceId
 }
 
 export const terms = {
