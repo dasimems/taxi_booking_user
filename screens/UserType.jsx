@@ -4,7 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { Button, LogoHeader, UserCard, UserTypeList } from '../components';
 import { userTypeLinks } from '../assets/data/data';
 
-const UserType = () => {
+const UserType = ({navigation}) => {
 
   const {parentContainerStyle, buttonText, pDefault}= AllStyle;
 
@@ -43,7 +43,9 @@ const UserType = () => {
 
             </View>
 
-            <Button buttonDisabled={user === ""? true: false }>
+            <Button onPress={()=>{
+              navigation.navigate("Register")
+            }} buttonDisabled={user === ""? true: false }>
               <Text style={{...buttonText}}>Next</Text>
             </Button>
 

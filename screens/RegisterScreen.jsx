@@ -2,11 +2,11 @@ import { StyleSheet, Image, Text, View, SafeAreaView, Pressable, ScrollView, Tou
 import React, { useEffect, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { CountryList, LogoHeader } from '../components';
-import { icons } from '../assets/data/data';
+import { colors, icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
 
-const LoginScreen = ({navigation}) => {
+const RegisterScreen = ({navigation}) => {
 
     
     const [formState, setFormState] = useState({
@@ -16,6 +16,9 @@ const LoginScreen = ({navigation}) => {
         countryName: "united state of america"
         
     });
+
+    const [passCodeEnabled, setPassCode] = useState(false)
+    const [faceIdEnabled, setFaceId] = useState(false)
 
     const [search, setSearchValue] = useState("")
 
@@ -50,7 +53,7 @@ const LoginScreen = ({navigation}) => {
 
                 <LogoHeader />
 
-                <Text style={{...h1, fontFamily: "Roboto_700Bold"}}>Login to your account</Text>
+                <Text style={{...h1, fontFamily: "Roboto_700Bold"}}>Register</Text>
 
                 <Text style={p}>Welcome back to <Text style={{color: "rgba(0, 0, 0, 1)"}}>Carmee,</Text> enter your details below to continue.</Text>
 
@@ -100,15 +103,39 @@ const LoginScreen = ({navigation}) => {
                     />
 
                 </View>
+
+                <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
+                    <Text>Passcode</Text>
+                    <Pressable style={{width: 50, height: 25, backgroundColor: passCodeEnabled? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: passCodeEnabled? "flex-end": "flex-start"}}
+                    
+                        onPress={()=>{
+                            setPassCode(!passCodeEnabled)
+                        }}
+
+                    >
+                        <View style={{width: 23, height: 23, backgroundColor: "white", borderRadius: 50}}></View>
+                    </Pressable>
+                </View>
+
+                <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
+                    <Text>Face Id</Text>
+                    <Pressable style={{width: 50, height: 25, backgroundColor: faceIdEnabled? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: faceIdEnabled? "flex-end": "flex-start"}}
+                    
+                        onPress={()=>{
+                            setFaceId(!faceIdEnabled)
+                        }}
+
+                    >
+                        <View style={{width: 23, height: 23, backgroundColor: "white", borderRadius: 50}}></View>
+                    </Pressable>
+                </View>
+
+                
                 
                 
             </View>
 
-            <Pressable style={{marginTop: 40, alignItems: "center"}}>
-
-                <Image source={faceId} style={{width: 31}} />
-
-            </Pressable>
+            
 
             <View style={{...styles.loginContainer}} >
 
@@ -117,11 +144,11 @@ const LoginScreen = ({navigation}) => {
                 </Button>
 
                 <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 0}}>
-                    <Text style={{...pDefault}}>Don't have an account?</Text>
+                    <Text style={{...pDefault}}>Already have an account?</Text>
 
                     <TouchableOpacity onPress={()=>{
-                        navigation.navigate("UserType")
-                    }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Register</Text></TouchableOpacity>
+                        navigation.navigate("Login")
+                    }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Login</Text></TouchableOpacity>
                 </View>
 
             </View>
@@ -170,7 +197,7 @@ const LoginScreen = ({navigation}) => {
   )
 }
 
-export default LoginScreen
+export default RegisterScreen
 
 const styles = StyleSheet.create({
     loginContainer: {

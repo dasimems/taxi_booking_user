@@ -2,7 +2,7 @@ import { TouchableOpacity, Text, Pressable } from 'react-native'
 import React from 'react'
 import AllStyle from '../assets/styles/Styles'
 
-const Button = ({buttonDisabled, children}) => {
+const Button = ({buttonDisabled, children, ...props}) => {
 
     const {buttonDisabledStyle, buttonStyle} = AllStyle
 
@@ -16,7 +16,7 @@ const Button = ({buttonDisabled, children}) => {
             </Pressable>
             
         ) : (
-            <TouchableOpacity style={buttonStyle}>
+            <TouchableOpacity {...props} style={buttonStyle}>
                 {children}
             </TouchableOpacity>
         )}
