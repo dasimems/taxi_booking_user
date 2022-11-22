@@ -1,18 +1,25 @@
-import { StyleSheet, Image, Text, View, SafeAreaView, Pressable, ScrollView, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Image, Text, View, SafeAreaView, Pressable, ScrollView, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
-import { LogoHeader } from '../components';
+import { CountryList, LogoHeader } from '../components';
 import { icons } from '../assets/data/data';
 import {Button} from "../components"
+import { FontAwesome } from '@expo/vector-icons'; 
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
 
     
     const [formState, setFormState] = useState({
-        countryCode: "1",
-        countryImage: "",
-        phoneNumber: ""
+        mobileCode: "1",
+        countryCode: "us",
+        phoneNumber: "",
+        countryName: "united state of america"
+        
     });
+
+    const [search, setSearchValue] = useState("")
+
+    const [countryMenuOpened, setCountryMenuOpened] = useState(false)
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
@@ -29,7 +36,7 @@ const LoginScreen = () => {
 
     }, [formState])
 
-    const {parentContainerStyle, h1, p, container, label, loginInput, buttonDisabledStyle, buttonStyle, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer} = AllStyle;
+    const {parentContainerStyle, h1, p, container, label, loginInput, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer, absolute} = AllStyle;
 
     const {google, apple, faceId} = icons;
     
@@ -55,15 +62,28 @@ const LoginScreen = () => {
 
                         <TouchableOpacity style={{
                             height: "100%",
-                            paddingHorizontal: 20,
-                            justifyContent: "center"
-                    
-                        }}>
-                            <Text style={{fontSize: 18}}>+{formState.countryCode}</Text>
+                            paddingHorizontal: 12,
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row"
+                        }}
+                        
+                        onPress={()=>{
+                            setCountryMenuOpened(true)
+                        }}
+
+                        >
+
+                            <Image source={{uri: `https://countryflagsapi.com/png/${formState.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
+
+                            <Text style={{fontSize: 18, marginLeft: 10}}>+{formState.mobileCode}</Text>
+
+                            <FontAwesome name="angle-down" size={17} color="rgba(0, 0, 0, .3)" style={{marginLeft: 5}} />
+
                         </TouchableOpacity>
 
                         <TextInput 
-                            autoComplete='tel' 
+                            autoComplete='tel-device' 
                             dataDetectorTypes="phoneNumber" 
                             keyboardType="phone-pad" 
                             style={textInputStyle} 
@@ -110,9 +130,12 @@ const LoginScreen = () => {
                     <View style={{...container, flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 0}}>
                         <Text style={{...pDefault}}>Don't have an account?</Text>
 
-                        <TouchableOpacity><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Register</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{
+                            navigation.navigate("UserType")
+                        }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Register</Text></TouchableOpacity>
                     </View>
                     
+                
 
                 </View>
 
@@ -120,8 +143,47 @@ const LoginScreen = () => {
                 
 
             </View>
+            
 
         </ScrollView>
+
+        {countryMenuOpened? <View style={{...absolute, width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, .1)", bottom: 0}}>
+
+            <Pressable onPress={()=>{
+                setCountryMenuOpened(false)
+            }} style={{...absolute, width: "100%", height: "14%", top: 0}}></Pressable>
+
+            <View style={{...absolute, width: "100%", height: "85%", backgroundColor: "white", bottom: 0, borderTopRightRadius: 40, borderTopLeftRadius: 40, paddingHorizontal: 25}}>
+
+                <View style={loginInput}>
+                    <TextInput 
+                        placeholder='Search'
+                        style={{...textInputStyle, fontSize: 16, width: "100%", paddingHorizontal: 20}}
+                        value={search}
+                        onChangeText={(text)=>{
+                            setSearchValue(text)
+                        }}
+                    />
+                </View>
+                
+                <CountryList searched={search} onValuePicked={(item)=>{
+
+                    setFormState(prevState => {
+                        return({
+                            ...prevState,
+                            mobileCode: item["dial_code"].slice(1,),
+                            countryCode: item.code.toLowerCase(),
+                            countryName: item.name
+
+                        })
+                    })
+                    setCountryMenuOpened(false)
+
+                }} />
+
+            </View>
+        </View>: null}
+
     </SafeAreaView>
   )
 }

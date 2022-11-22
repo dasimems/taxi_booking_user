@@ -6,6 +6,8 @@ const AllStyle = StyleSheet.create({
     parentContainerStyle: {
         backgroundColor: "white",
         paddingVertical: 40,
+        // borderWidth: 2,
+        // borderColor: "red"
 
     },
 
@@ -91,6 +93,12 @@ const AllStyle = StyleSheet.create({
         marginTop: 40
 
     },
+
+    absolute: {
+        position: "absolute"
+    },
+
+    
 
     buttonText: {
         color: "white",

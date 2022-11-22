@@ -4,6 +4,7 @@ import Apple from "../icons/apple_icon.png"
 import FaceId from "../icons/face_id.png"
 import Passenger from "../icons/passenger.png"
 import Driver from "../icons/driver.png"
+import countries from "./countries.json"
 
 export const appName = "CarMeee"
 
@@ -35,6 +36,8 @@ export const navLinks = [
 
     
 ]
+
+export {countries}
 
 export const images = {
     logo: Logo
