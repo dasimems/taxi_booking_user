@@ -6,6 +6,8 @@ const AllStyle = StyleSheet.create({
     parentContainerStyle: {
         backgroundColor: "white",
         paddingVertical: 40,
+        minHeight: "100%",
+        alignItems: "center"
         // borderWidth: 2,
         // borderColor: "red"
 

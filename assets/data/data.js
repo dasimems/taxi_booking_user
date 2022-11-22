@@ -43,7 +43,7 @@ export const images = {
     logo: Logo
 }
 
-export const userType = [
+export const userTypeLinks = [
     {
         label: "Driver",
         icon: Driver
