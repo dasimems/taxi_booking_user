@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen, RegisterScreen, UserType } from './screens';
+import { LoginScreen, RegisterScreen, UserType, Verification } from './screens';
 import {
   useFonts,
   Roboto_100Thin,
@@ -64,6 +64,11 @@ export default function App() {
               <Stack.Screen
                 name="Register"
                 component={RegisterScreen}
+              />
+
+              <Stack.Screen
+                name="Verification"
+                component={Verification}
               />
             </Stack.Navigator>
           </NavigationContainer>

@@ -3,6 +3,7 @@ import Google from "../icons/google_icon.png"
 import Apple from "../icons/apple_icon.png"
 import FaceId from "../icons/face_id.png"
 import Passenger from "../icons/passenger.png"
+import MailSent from "../icons/mail_sent.png"
 import Driver from "../icons/driver.png"
 import countries from "./countries.json"
 
@@ -58,7 +59,8 @@ export const userTypeLinks = [
 export const icons = {
     google: Google,
     apple: Apple,
-    faceId: FaceId
+    faceId: FaceId,
+    mailSent: MailSent
 }
 
 export const terms = {

@@ -139,7 +139,9 @@ const RegisterScreen = ({navigation}) => {
 
             <View style={{...styles.loginContainer}} >
 
-                <Button buttonDisabled={buttonDisabled}>
+                <Button onPress={()=>{
+                    navigation.navigate("Verification")
+                }} buttonDisabled={buttonDisabled}>
                     <Text style={buttonText}>Continue</Text>
                 </Button>
 
