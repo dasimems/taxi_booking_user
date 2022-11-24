@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, SafeAreaView, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { countries } from '../assets/data/data'
 import CountryDetails from './CountryDetails'
@@ -27,6 +27,8 @@ const CountryList = ({onValuePicked, searched}) => {
 
     <>
         <View style={{paddingVertical: 20, paddingBottom: 90}}>
+
+            
 
             <SafeAreaView>
 

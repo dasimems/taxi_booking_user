@@ -5,20 +5,14 @@ import { CountryList, LogoHeader } from '../components';
 import { colors, icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
+import { useRegisterContext } from '../context';
 
 const RegisterScreen = ({navigation}) => {
 
     
-    const [formState, setFormState] = useState({
-        mobileCode: "1",
-        countryCode: "us",
-        phoneNumber: "",
-        countryName: "united state of america"
-        
-    });
-
-    const [passCodeEnabled, setPassCode] = useState(false)
-    const [faceIdEnabled, setFaceId] = useState(false)
+    const {registerDetails, setRegisterDetails} = useRegisterContext();
+    
+    
 
     const [search, setSearchValue] = useState("")
 
@@ -28,7 +22,7 @@ const RegisterScreen = ({navigation}) => {
 
     useEffect(()=>{
 
-        var {phoneNumber} = formState;
+        var {phoneNumber} = registerDetails;
 
         if(phoneNumber.length > 8){
             setButtonDisabled(false)
@@ -37,7 +31,7 @@ const RegisterScreen = ({navigation}) => {
 
         }
 
-    }, [formState])
+    }, [registerDetails])
 
     const {parentContainerStyle, h1, p, container, label, loginInput, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer, absolute} = AllStyle;
 
@@ -75,9 +69,9 @@ const RegisterScreen = ({navigation}) => {
 
                     >
 
-                        <Image source={{uri: `https://countryflagsapi.com/png/${formState.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
+                        <Image source={{uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
 
-                        <Text style={{fontSize: 18, marginLeft: 10}}>+{formState.mobileCode}</Text>
+                        <Text style={{fontSize: 18, marginLeft: 10}}>+{registerDetails.mobileCode}</Text>
 
                         <FontAwesome name="angle-down" size={17} color="rgba(0, 0, 0, .3)" style={{marginLeft: 5}} />
 
@@ -89,9 +83,9 @@ const RegisterScreen = ({navigation}) => {
                         keyboardType="phone-pad" 
                         style={textInputStyle} 
                         placeholder="Enter your phone" 
-                        value={formState.phoneNumber} 
+                        value={registerDetails.phoneNumber} 
                         onChangeText={(text)=>{
-                            setFormState(prevState => {
+                            setRegisterDetails(prevState => {
                                 return(
                                     {
                                         ...prevState,
@@ -106,10 +100,15 @@ const RegisterScreen = ({navigation}) => {
 
                 <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
                     <Text>Passcode</Text>
-                    <Pressable style={{width: 50, height: 25, backgroundColor: passCodeEnabled? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: passCodeEnabled? "flex-end": "flex-start"}}
+                    <Pressable style={{width: 50, height: 25, backgroundColor: registerDetails.passCodeSet? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: registerDetails.passCodeSet? "flex-end": "flex-start"}}
                     
                         onPress={()=>{
-                            setPassCode(!passCodeEnabled)
+                            setRegisterDetails(prevState => {
+                                return({
+                                    ...prevState,
+                                    passCodeSet: !prevState.passCodeSet
+                                })
+                            })
                         }}
 
                     >
@@ -119,10 +118,19 @@ const RegisterScreen = ({navigation}) => {
 
                 <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
                     <Text>Face Id</Text>
-                    <Pressable style={{width: 50, height: 25, backgroundColor: faceIdEnabled? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: faceIdEnabled? "flex-end": "flex-start"}}
+                    <Pressable style={{width: 50, height: 25, backgroundColor: registerDetails.faceSet? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: registerDetails.faceSet? "flex-end": "flex-start"}}
                     
                         onPress={()=>{
-                            setFaceId(!faceIdEnabled)
+                            setRegisterDetails(prevState => {
+                                
+                                return(
+                                    {
+                                        ...prevState,
+                                        faceSet: !prevState.faceSet
+                                    }
+                                )
+                                
+                            })
                         }}
 
                     >
@@ -179,7 +187,7 @@ const RegisterScreen = ({navigation}) => {
                 
                 <CountryList searched={search} onValuePicked={(item)=>{
 
-                    setFormState(prevState => {
+                    setRegisterDetails(prevState => {
                         return({
                             ...prevState,
                             mobileCode: item["dial_code"].slice(1,),

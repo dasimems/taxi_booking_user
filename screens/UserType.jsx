@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { Button, LogoHeader, UserCard, UserTypeList } from '../components';
 import { userTypeLinks } from '../assets/data/data';
+import { useRegisterContext } from '../context';
 
 const UserType = ({navigation}) => {
 
   const {parentContainerStyle, buttonText, pDefault}= AllStyle;
 
   const [user, setUser] = useState("")
+  const {registerDetails, setRegisterDetails} = useRegisterContext();
 
   return (
     <SafeAreaView>
@@ -24,14 +26,19 @@ const UserType = ({navigation}) => {
 
 
               <FlatList
-                contentContainerStyle={{width: "100%", justifyContent: "space-between", marginTop: 40}}
+                contentContainerStyle={{width: "100%", justifyContent: "center", marginTop: 40}}
                 horizontal={true}
                 data={userTypeLinks}
                 renderItem={({item})=>{
                 return(
-                    <UserCard active={user.toLowerCase()=== item.label.toLowerCase()? true : false } onElementClick={(value)=>{
+                    <UserCard active={registerDetails.userType.toLowerCase()=== item.label.toLowerCase()? true : false } onElementClick={(value)=>{
 
-                      setUser(value)
+                      setRegisterDetails(prevState => {
+                        return({
+                          ...prevState,
+                          userType: value
+                        })
+                      })
 
                     }} data={item} />
                 )
@@ -45,7 +52,7 @@ const UserType = ({navigation}) => {
 
             <Button onPress={()=>{
               navigation.navigate("Register")
-            }} buttonDisabled={user === ""? true: false }>
+            }} buttonDisabled={registerDetails.userType === ""? true: false }>
               <Text style={{...buttonText}}>Next</Text>
             </Button>
 

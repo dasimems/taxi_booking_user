@@ -8,7 +8,9 @@ export const RegisterProvider = ({children}) => {
     const [registerDetails, setRegisterDetails] = useState({
         userType: "",
         phoneNumber: "",
-        countryCode: "",
+        countryCode: "us",
+        mobileCode: "1",
+        countryName: "",
         passCodeSet: false,
         passCode: "",
         faceSet: false,

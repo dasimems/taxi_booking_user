@@ -8,7 +8,7 @@ const UserCard = ({active, onElementClick, data}) => {
   // console.log(data)
   return (
 
-    <Pressable style={{minWidth: 140, height: 200}} onPress={()=>{
+    <Pressable style={{minWidth: 150, height: 200, marginRight: 20}} onPress={()=>{
 
       onElementClick(label)
 

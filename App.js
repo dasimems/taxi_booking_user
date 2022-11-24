@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen, RegisterScreen, UserType, Verification } from './screens';
+import { FinalRegistration, LoginScreen, RegisterScreen, UserType, Verification } from './screens';
 import {
   useFonts,
   Roboto_100Thin,
@@ -44,6 +44,7 @@ export default function App() {
 
     return (
       <>
+
         <RegisterProvider>
           <StatusBar style='auto' />
           <NavigationContainer>
@@ -51,6 +52,13 @@ export default function App() {
             screenOptions={{
               headerShown: false
             }}>
+
+              
+              <Stack.Screen
+                name="FinalRegistration"
+                component={FinalRegistration}
+              />
+
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}
@@ -70,6 +78,12 @@ export default function App() {
                 name="Verification"
                 component={Verification}
               />
+
+              {/* <Stack.Screen
+                name="FinalRegistration"
+                component={FinalRegistration}
+              /> */}
+
             </Stack.Navigator>
           </NavigationContainer>
         </RegisterProvider>

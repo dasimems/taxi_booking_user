@@ -40,7 +40,7 @@ const Verification = ({navigation}) => {
       codeOneRef.current.focus();
     }else{
 
-      
+      navigation.navigate("FinalRegistration");
 
     }
   }, [codes])
