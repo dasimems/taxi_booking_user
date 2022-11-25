@@ -75,6 +75,23 @@ export const bookings = [
     }
 ]
 
+export const bookingHeader = [
+    {
+        label: "Ongoing"
+
+    },
+
+    {
+        label: "Completed"
+
+    },
+
+    {
+        label: "Cancelled"
+
+    }
+]
+
 export const windowWidth = Dimensions.get('window').width;
 export const windowHeight = Dimensions.get('window').height;
 
