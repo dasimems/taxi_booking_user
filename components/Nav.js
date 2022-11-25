@@ -1,12 +1,14 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Pressable } from 'react-native'
 import React, { memo } from 'react'
 import { navLinks } from '../assets/data/data'
 import { useParamsContext } from '../context'
+import { useNavigation } from '@react-navigation/native'
 
 
 const Nav = ({style, ...props}) => {
 
     const {activeParam, setActiveParam} = useParamsContext();
+    const navigation = useNavigation();
 
   return (
 
@@ -42,13 +44,28 @@ const Nav = ({style, ...props}) => {
                     renderItem={({item})=>{
                         const {label, inActiveIcon, activeIcon} = item;
                         return(
-                            <TouchableOpacity style={{flex: 1/ navLinks.length, alignItems: "center"}}>
+
+                            activeParam.toLowerCase() === label.toLowerCase() ? (
+
+                                <Pressable style={{ flex: 1 / navLinks.length, alignItems: "center" }}>
+
+                                    <Image source={activeParam.toLowerCase() === label.toLowerCase() ? activeIcon : inActiveIcon} style={{ width: 20, height: 20, resizeMode: "contain", marginBottom: 9 }} />
+
+                                    <Text style={{ width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14 }}>{item.label}</Text>
+
+                                </Pressable>
+
+                            ) :(
+                            
+                            <TouchableOpacity onPress={()=> {
+                                navigation.navigate(label);
+                            }} style={{flex: 1/ navLinks.length, alignItems: "center"}}>
 
                                 <Image source={activeParam.toLowerCase() === label.toLowerCase()? activeIcon: inActiveIcon} style={{width: 20, height: 20, resizeMode: "contain", marginBottom: 9}} />    
 
                                 <Text style={{width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14}}>{item.label}</Text>
 
-                            </TouchableOpacity>
+                            </TouchableOpacity>)
                         )
                     }}
                 />

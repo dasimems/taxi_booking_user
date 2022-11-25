@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { FinalRegistration, LoginScreen, Bookings, RegisterScreen, UserType, Verification } from './screens';
+import { FinalRegistration, LoginScreen, Bookings, RegisterScreen, UserType, Verification, Inbox, Wallet, Profile, HomeScreen } from './screens';
 import {
   useFonts,
   Roboto_100Thin,
@@ -53,11 +53,36 @@ export default function App() {
               screenOptions={{
                 headerShown: false
               }}>
+
+
+                <Stack.Screen
+                  name="Home"
+                  component={HomeScreen}
+                  initialParams={{ active: "Home" }}
+                />
                 
                 <Stack.Screen
                   name="Bookings"
                   component={Bookings}
                   initialParams={{active: "Bookings"}}
+                />
+
+                <Stack.Screen
+                  name="Inbox"
+                  component={Inbox}
+                  initialParams={{ active: "Inbox" }}
+                />
+
+                <Stack.Screen
+                  name="Wallet"
+                  component={Wallet}
+                  initialParams={{ active: "Wallet" }}
+                />
+
+                <Stack.Screen
+                  name="Profile"
+                  component={Profile}
+                  initialParams={{ active: "Profile" }}
                 />
 
 
