@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
-import { Header, Nav } from '../components';
+import { BookingCards, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
-import { bookingHeader, colors, statusBarHeight, windowHeight } from '../assets/data/data';
+import { bookingHeader, bookings, colors, statusBarHeight, windowHeight } from '../assets/data/data';
 
 const Bookings = ({route}) => {
     const {parentContainerStyle} = AllStyle;
@@ -11,7 +11,8 @@ const Bookings = ({route}) => {
     const {setActiveParam} = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
-    const [activeBooking, setActiveBookings] = useState("ongoing");
+    const [activeBooking, setActiveBookings] = useState("");
+    const [listedBooking, setListedBooking] = useState([])
     
     
     useEffect(()=> {
@@ -19,6 +20,20 @@ const Bookings = ({route}) => {
       setActiveParam(active);
 
     }, [active])
+
+    useEffect(()=>{
+
+      setActiveBookings(bookingHeader[0].label)
+
+    }, [bookingHeader])
+
+    useEffect(()=>{
+
+      var neededBooking = bookings.filter(booking => booking.status.toLowerCase() === activeBooking.toLowerCase())
+
+      setListedBooking(neededBooking);
+
+    }, [activeBooking, bookings])
 
     const {h1} = AllStyle;
 
@@ -49,7 +64,9 @@ const Bookings = ({route}) => {
                   const {label} = item;
 
                   return(
-                    <TouchableOpacity style={{ borderBottomWidth: activeBooking.toLowerCase() === label.toLowerCase() ? 3: 0, borderBottomColor: colors.primary, paddingBottom: 10, paddingHorizontal: 7 }}>
+                    <TouchableOpacity onPress={()=>{
+                      setActiveBookings(label.toLowerCase())
+                    }} style={{ borderBottomWidth: activeBooking.toLowerCase() === label.toLowerCase() ? 3: 0, borderBottomColor: colors.primary, paddingBottom: 10, paddingHorizontal: 7 }}>
                       <Text style={{fontWeight: activeBooking.toLowerCase() === label.toLowerCase()? "bold" : "normal", fontSize: 16 }}>{label}</Text>
                     </TouchableOpacity>
                   )
@@ -61,9 +78,32 @@ const Bookings = ({route}) => {
 
       </Header>
 
-      <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, minHeight: windowHeight - (headerHeight + navHeight), width: "100%", justifyContent: "space-between"}}>
+      <View style={{ height: windowHeight - (headerHeight + navHeight)  }}>
 
-      </ScrollView>
+        <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", paddingBottom: 20}}>
+
+          <View style={{paddingHorizontal: 20, width: "100%"}}>
+
+            <FlatList 
+              scrollEnabled={false}
+              contentContainerStyle={{ width: "100%"}}
+              keyExtractor={(item, index)=> index}
+              data={listedBooking}
+              extraData={listedBooking}
+              renderItem={({item})=>{
+                return(
+                  <BookingCards data={item} />
+                )
+              }}
+
+            />
+          </View>
+
+
+        </ScrollView>
+
+      </View>
+
 
       <Nav onLayout={(event) => {
         var { height } = event.nativeEvent.layout;

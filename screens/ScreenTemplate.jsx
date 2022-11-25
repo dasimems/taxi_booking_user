@@ -33,9 +33,15 @@ const ScreenTemplate = ({ route }) => {
                 <Text style={{ ...h1, textAlign: "left", marginVertical: 30 }}>Bookings</Text>
             </Header>
 
-            <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, minHeight: windowHeight - (headerHeight + navHeight), width: "100%", justifyContent: "space-between" }}>
 
-            </ScrollView>
+            <View style={{ height: windowHeight - (headerHeight + navHeight) }}>
+
+                <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", justifyContent: "space-between" }}>
+
+                </ScrollView>
+
+            </View>
+
 
             <Nav onLayout={(event) => {
                 var { height } = event.nativeEvent.layout;

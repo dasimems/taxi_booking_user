@@ -17,6 +17,7 @@ import WalletActive from "../icons/wallet_active.png"
 import ProfileActive from "../icons/profile_active.png"
 import ProfileInActive from "../icons/profile_inactive.png"
 import {StatusBar} from 'react-native';
+import UserImage from "../images/user_image.jpg"
 import { Dimensions } from 'react-native';
 
 export const appName = "CarMeee"
@@ -59,25 +60,162 @@ export const navLinks = [
 
 export const bookings = [
     {
-        bookingDate: "",
-        name: "",
-        image: "",
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
         from: {
-            time: "",
-            destination: ""
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
         },
         to: {
-            time: "",
-            destination: ""
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
         },
-        status: "",
-        price: "",
+        status: "Completed",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Completed",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Pending",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Pending",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Cancelled",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Cancelled",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Cancelled",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Pending",
+        price: "12.5",
+        currency: "$",
+    },
+
+    {
+        bookingDate: "Mon 12 Dec 2022",
+        name: "Duyil Ayomid",
+        image: UserImage,
+        from: {
+            time: "3:15 pm",
+            destination: "Ghogha Circle, Bhavnagar"
+        },
+        to: {
+            time: "3:15 pm",
+            destination: "Kaliyabad, Bhavnagar"
+        },
+        status: "Completed",
+        price: "12.5",
+        currency: "$",
     }
 ]
 
 export const bookingHeader = [
     {
-        label: "Ongoing"
+        label: "Pending"
 
     },
 
