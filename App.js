@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { FinalRegistration, LoginScreen, RegisterScreen, UserType, Verification } from './screens';
+import { FinalRegistration, LoginScreen, Bookings, RegisterScreen, UserType, Verification } from './screens';
 import {
   useFonts,
   Roboto_100Thin,
@@ -17,7 +17,7 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
-import { RegisterProvider } from './context';
+import { ParamsProvider, RegisterProvider } from './context';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,46 +46,55 @@ export default function App() {
       <>
 
         <RegisterProvider>
-          <StatusBar style='auto' />
-          <NavigationContainer>
-            <Stack.Navigator 
-            screenOptions={{
-              headerShown: false
-            }}>
+          <ParamsProvider>
+            <StatusBar style='auto' />
+            <NavigationContainer>
+              <Stack.Navigator 
+              screenOptions={{
+                headerShown: false
+              }}>
+                
+                <Stack.Screen
+                  name="Bookings"
+                  component={Bookings}
+                  initialParams={{active: "Bookings"}}
+                />
 
-              
-              <Stack.Screen
-                name="FinalRegistration"
-                component={FinalRegistration}
-              />
 
-              <Stack.Screen
-                name="Login"
-                component={LoginScreen}
-              />
+                <Stack.Screen
+                  name="Login"
+                  component={LoginScreen}
+                />
 
-              <Stack.Screen
-                name="UserType"
-                component={UserType}
-              />
+                <Stack.Screen
+                  name="UserType"
+                  component={UserType}
+                />
 
-              <Stack.Screen
-                name="Register"
-                component={RegisterScreen}
-              />
+                <Stack.Screen
+                  name="Register"
+                  component={RegisterScreen}
+                />
 
-              <Stack.Screen
-                name="Verification"
-                component={Verification}
-              />
+                <Stack.Screen
+                  name="Verification"
+                  component={Verification}
+                />
+                
+                <Stack.Screen
+                  name="FinalRegistration"
+                  component={FinalRegistration}
+                />
 
-              {/* <Stack.Screen
-                name="FinalRegistration"
-                component={FinalRegistration}
-              /> */}
 
-            </Stack.Navigator>
-          </NavigationContainer>
+                {/* <Stack.Screen
+                  name="FinalRegistration"
+                  component={FinalRegistration}
+                /> */}
+
+              </Stack.Navigator>
+            </NavigationContainer>
+          </ParamsProvider>
         </RegisterProvider>
       </>
     );

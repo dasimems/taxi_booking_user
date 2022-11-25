@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
+import { statusBarHeight } from '../assets/data/data'
 
-const Header = () => {
+const Header = ({children, style, ...props}) => {
+
+  const headerRef = useRef("");
+
+  
   return (
-    <View>
-      <Text>Header</Text>
+    <View {...props} ref={headerRef} style={{paddingHorizontal: 25, paddingTop: statusBarHeight, zIndex: 1, width: "100%", backgroundColor: "white", ...style}}>
+      <View style={{width: "100%"}}>
+        {children}
+      </View>
     </View>
   )
 }

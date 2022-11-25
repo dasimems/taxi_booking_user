@@ -6,37 +6,77 @@ import Passenger from "../icons/passenger.png"
 import MailSent from "../icons/mail_sent.png"
 import Driver from "../icons/driver.png"
 import countries from "./countries.json"
+import HomeActive from "../icons/home_active.png"
+import HomeInActive from "../icons/home_inactive.png"
+import BookingsInActive from "../icons/bookings_inactive.png"
+import BookingsActive from "../icons/bookings_active.png"
+import InboxActive from "../icons/inbox_active.png"
+import InboxInActive from "../icons/inbox_inactive.png"
+import WalletInActive from "../icons/wallet_inactive.png"
+import WalletActive from "../icons/wallet_active.png"
+import ProfileActive from "../icons/profile_active.png"
+import ProfileInActive from "../icons/profile_inactive.png"
+import {StatusBar} from 'react-native';
+import { Dimensions } from 'react-native';
 
 export const appName = "CarMeee"
+
+export const statusBarHeight = StatusBar.currentHeight;
 
 export const navLinks = [
     {
         label: "Home",
-        icon: ""
+        activeIcon: HomeActive,
+        inActiveIcon: HomeInActive,
     },
 
     {
         label: "Bookings",
-        icon: ""
+        activeIcon: BookingsActive,
+        inActiveIcon: BookingsInActive
     },
 
     {
         label: "Inbox",
-        icon: ""
+        activeIcon: InboxActive,
+        inActiveIcon: InboxInActive
     },
 
     {
         label: "Wallet",
-        icon: ""
+        activeIcon: WalletActive,
+        inActiveIcon: WalletInActive
     },
 
     {
         label: "Profile",
-        icon: ""
+        activeIcon: ProfileActive,
+        inActiveIcon: ProfileInActive
     },
 
     
 ]
+
+export const bookings = [
+    {
+        bookingDate: "",
+        name: "",
+        image: "",
+        from: {
+            time: "",
+            destination: ""
+        },
+        to: {
+            time: "",
+            destination: ""
+        },
+        status: "",
+        price: "",
+    }
+]
+
+export const windowWidth = Dimensions.get('window').width;
+export const windowHeight = Dimensions.get('window').height;
 
 export {countries}
 
@@ -80,3 +120,4 @@ export const colors= {
     success: "#25D416"
 
 }
+

@@ -1,0 +1,68 @@
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import React, { memo } from 'react'
+import { navLinks } from '../assets/data/data'
+import { useParamsContext } from '../context'
+
+
+const Nav = ({style, ...props}) => {
+
+    const {activeParam, setActiveParam} = useParamsContext();
+
+  return (
+
+
+    <>
+          <View elevation={3} {...props} style={{
+            ...style,
+            width: "100%",
+            shadowColor: "#000",
+            shadowOffset: {
+            width: 2,
+            height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 10,
+            borderRadius: 10,
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "visible"
+      
+        }}>
+
+            <View style={{width: "100%", marginTop: 2, backgroundColor: "white", paddingHorizontal: 20, paddingVertical: 15}}>
+
+                <FlatList
+                    data={navLinks}
+                    keyExtractor={(item)=>item.label}
+                    numColumns={navLinks.length}
+                    columnWrapperStyle={{
+                        flex: 1,
+                        justifyContent: "space-around"
+                    }}
+                    renderItem={({item})=>{
+                        const {label, inActiveIcon, activeIcon} = item;
+                        return(
+                            <TouchableOpacity style={{flex: 1/ navLinks.length, alignItems: "center"}}>
+
+                                <Image source={activeParam.toLowerCase() === label.toLowerCase()? activeIcon: inActiveIcon} style={{width: 20, height: 20, resizeMode: "contain", marginBottom: 9}} />    
+
+                                <Text style={{width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14}}>{item.label}</Text>
+
+                            </TouchableOpacity>
+                        )
+                    }}
+                />
+            <TouchableOpacity>
+
+            </TouchableOpacity>
+            </View>
+
+        </View>
+    
+    </>
+  )
+}
+
+export default memo(Nav)
+
+const styles = StyleSheet.create({})
