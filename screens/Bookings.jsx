@@ -78,9 +78,9 @@ const Bookings = ({route}) => {
 
       </Header>
 
-      <View style={{ height: windowHeight - (headerHeight + navHeight)  }}>
+      <View style={{ height: windowHeight - (headerHeight - statusBarHeight)  }}>
 
-        <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", paddingBottom: 20}}>
+        <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", paddingBottom: (navHeight + 20)}}>
 
           <View style={{paddingHorizontal: 20, width: "100%"}}>
 

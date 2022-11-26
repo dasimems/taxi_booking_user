@@ -16,6 +16,8 @@ import WalletInActive from "../icons/wallet_inactive.png"
 import WalletActive from "../icons/wallet_active.png"
 import ProfileActive from "../icons/profile_active.png"
 import ProfileInActive from "../icons/profile_inactive.png"
+import Settings from "../icons/settings.png"
+import SignOut from "../icons/sign_out.png"
 import {StatusBar} from 'react-native';
 import UserImage from "../images/user_image.jpg"
 import { Dimensions } from 'react-native';
@@ -23,6 +25,19 @@ import { Dimensions } from 'react-native';
 export const appName = "CarMeee"
 
 export const statusBarHeight = StatusBar.currentHeight;
+
+export const userDetails = {
+    name: "Duyil Ayomid",
+    email: "isaacseun63@gmail.com",
+    mobileNumber: "+2349036634645",
+    joinedDate: "July, 15 2020",
+    carModel: "Mecedes-Benz E-Class",
+    plateNumber: "HSW 4736 XK",
+    rating: 4.8,
+    trips: 279,
+    years: 4,
+    userImage: UserImage
+}
 
 export const navLinks = [
     {
@@ -255,7 +270,9 @@ export const icons = {
     google: Google,
     apple: Apple,
     faceId: FaceId,
-    mailSent: MailSent
+    mailSent: MailSent,
+    settings: Settings,
+    signOut: SignOut
 }
 
 export const terms = {
@@ -271,6 +288,7 @@ export const cancellation = {
 export const colors= {
     primary: "#82CA97",
     secondary: "#ED713C",
+    secondaryLight: "#febb1b",
     danger: "#BC101A",
     success: "#25D416"
 

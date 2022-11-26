@@ -10,6 +10,7 @@ const Nav = ({style, ...props}) => {
     const {activeParam, setActiveParam} = useParamsContext();
     const navigation = useNavigation();
 
+
   return (
 
 
@@ -25,9 +26,11 @@ const Nav = ({style, ...props}) => {
             shadowOpacity: 0.8,
             shadowRadius: 10,
             borderRadius: 10,
+            position: "absolute",
+            bottom: 0,
+            left: 0,
             alignItems: "center",
-            justifyContent: "center",
-            overflow: "visible"
+            justifyContent: "center"
       
         }}>
 
@@ -59,6 +62,7 @@ const Nav = ({style, ...props}) => {
                             
                             <TouchableOpacity onPress={()=> {
                                 navigation.navigate(label);
+                                setActiveParam(label);
                             }} style={{flex: 1/ navLinks.length, alignItems: "center"}}>
 
                                 <Image source={activeParam.toLowerCase() === label.toLowerCase()? activeIcon: inActiveIcon} style={{width: 20, height: 20, resizeMode: "contain", marginBottom: 9}} />    

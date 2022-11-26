@@ -27,23 +27,24 @@ const BookingCards = ({data}) => {
   }, [status])
 
   return (
-    <View elevation={3} style={{
+    <View elevation={5} style={{
       width: "100%",
       // borderWidth: 1, borderColor: "red", 
       shadowColor: "#000",
+      
+      shadowOpacity: 0.5,
+      shadowRadius: 300,
+      borderRadius: 15, 
       shadowOffset: {
-        width: 0.5,
-        height: 0.5,
+        width: 0,
+        height: 0,
       },
-      shadowOpacity: 0.001,
-      shadowRadius: 15,
-      borderRadius: 10,
       alignItems: "center",
       justifyContent: "center",
       marginBottom: 20
     }}>
       <View style={{
-        width: "100%", paddingVertical: 8, paddingHorizontal: 15, borderRadius: 10,}}>
+        width: "99%", paddingVertical: 8, paddingHorizontal: 15, borderRadius: 10, backgroundColor: "white",marginTop: 2, borderRadius: 10}}>
 
         <Text style={{ color: "rgba(0, 0, 0, .5)" }}>{bookingDate}</Text>
         

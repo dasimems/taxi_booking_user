@@ -34,7 +34,7 @@ const Wallet = ({ route }) => {
             </Header>
 
 
-            <View style={{ height: windowHeight - (headerHeight + navHeight) }}>
+            <View style={{ height: windowHeight - (headerHeight - statusBarHeight) }}>
 
                 <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", justifyContent: "space-between" }}>
 
