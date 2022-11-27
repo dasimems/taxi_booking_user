@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
-import { Header, Nav } from '../components';
+import { ChatCard, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
-import { statusBarHeight, windowHeight } from '../assets/data/data';
+import { chats, statusBarHeight, windowHeight } from '../assets/data/data';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -35,7 +35,7 @@ const Inbox = ({ route }) => {
     const { h1 } = AllStyle;
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{height: "100%"}}>
 
             <Header onLayout={(event) => {
                 var { height } = event.nativeEvent.layout;
@@ -87,9 +87,25 @@ const Inbox = ({ route }) => {
 
             <View style={{ height: windowHeight - (headerHeight - statusBarHeight) }}>
 
-                <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", justifyContent: "space-between" }}>
+                <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", justifyContent: "space-between", paddingTop: 0 }}>
 
-                    <Text>Inbox</Text>
+                    <View style={{paddingHorizontal: 20}}>
+
+                        <FlatList
+                            data={chats}
+                            extraData={chats}
+                            keyExtractor={(item, index)=> index}
+                            renderItem={({item})=>{
+
+                                return(
+                                    
+                                    <ChatCard data={item} />
+                                )
+                            }}
+
+                        />
+
+                    </View>
 
                 </ScrollView>
 

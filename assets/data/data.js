@@ -267,6 +267,170 @@ export const userTypeLinks = [
     }
 ]
 
+export const chats = [
+    {
+        name: "Duyil Ayomid",
+        id: 1,
+        status: "online",
+        messages: [
+            {
+                message: "Hello",
+                type: "received",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Hi, i am doing great",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Wow, that's nice",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "unread"
+            }
+        ],
+        image: UserImage
+    },
+
+    {
+        name: "Duyil Ayomid",
+        id: 1,
+        status: "offline",
+        messages: [
+            {
+                message: "Hello",
+                type: "received",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Hi, i am doing great",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Wow, that's nice",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            }
+        ],
+        image: UserImage
+    },
+
+    {
+        name: "Duyil Ayomid",
+        id: 1,
+        status: "offline",
+        messages: [
+            {
+                message: "Hello",
+                type: "received",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Hi, i am doing great",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Wow, that's nice",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            }
+        ],
+        image: UserImage
+    },
+
+    {
+        name: "Duyil Ayomid",
+        id: 1,
+        status: "offline",
+        messages: [
+            {
+                message: "Hello",
+                type: "received",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Hi, i am doing great",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Wow, that's nice",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            }
+        ],
+        image: UserImage
+    },
+
+     {
+        name: "Duyil Ayomid",
+        id: 1,
+        status: "online",
+        messages: [
+            {
+                message: "Hello",
+                type: "received",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Hi, i am doing great",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            },
+
+            {
+                message: "Wow, that's nice",
+                type: "sent",
+                time: "13:09",
+                date: "20/09/22",
+                status: "read"
+            }
+        ],
+        image: UserImage
+    }
+
+
+]
+
 export const icons = {
     google: Google,
     apple: Apple,
