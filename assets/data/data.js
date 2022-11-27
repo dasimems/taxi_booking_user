@@ -17,6 +17,7 @@ import WalletActive from "../icons/wallet_active.png"
 import ProfileActive from "../icons/profile_active.png"
 import ProfileInActive from "../icons/profile_inactive.png"
 import Settings from "../icons/settings.png"
+import MasterCard from "../icons/mastercard_logo.png"
 import SignOut from "../icons/sign_out.png"
 import {StatusBar} from 'react-native';
 import UserImage from "../images/user_image.jpg"
@@ -272,7 +273,8 @@ export const icons = {
     faceId: FaceId,
     mailSent: MailSent,
     settings: Settings,
-    signOut: SignOut
+    signOut: SignOut,
+    masterCard: MasterCard
 }
 
 export const terms = {
@@ -283,13 +285,70 @@ export const terms = {
 export const cancellation = {
     text: ""
 
+};
+
+export const card = {
+
+    balance: "457080",
+    cardNumber: "5294 2436 4780 2468",
+    expiringMonth: "12",
+    expiringYear: "24",
+    cardType: "master card"
+
 }
+
+export const transactions = [
+    {
+        image: UserImage,
+        name: "Duyil Ayomid",
+        date: "Dec 20 2022",
+        time: "10:00 AM",
+        price: "14",
+        description: "Taxi Expenses",
+        type: "debit"
+
+    },
+
+    {
+        image: UserImage,
+        name: "Duyil Ayomid",
+        date: "Dec 20 2022",
+        time: "10:00 AM",
+        price: "14",
+        description: "Taxi Expenses",
+        type: "credit"
+
+    },
+
+    {
+        image: UserImage,
+        name: "Duyil Ayomid",
+        date: "Dec 20 2022",
+        time: "10:00 AM",
+        price: "14",
+        description: "Taxi Expenses",
+        type: "debit"
+
+    },
+
+    {
+        image: UserImage,
+        name: "Duyil Ayomid",
+        date: "Dec 20 2022",
+        time: "10:00 AM",
+        price: "14",
+        description: "Taxi Expenses",
+        type: "debit"
+
+    }
+]
 
 export const colors= {
     primary: "#82CA97",
     secondary: "#ED713C",
     secondaryLight: "#febb1b",
     danger: "#BC101A",
+    dangerLight: "#ef4b54",
     success: "#25D416"
 
 }
