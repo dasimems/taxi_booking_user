@@ -57,6 +57,10 @@ const Inbox = ({ route }) => {
                                 ref={searchRef}
                                 style={{...textInputStyle, paddingHorizontal: 15}}
                                 placeholder="Search text..."
+                                value={searchValue}
+                                onChangeText={(text)=>{
+                                    setSearchValue(text)
+                                }}
 
                             />
 

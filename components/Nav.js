@@ -73,9 +73,6 @@ const Nav = ({style, ...props}) => {
                         )
                     }}
                 />
-            <TouchableOpacity>
-
-            </TouchableOpacity>
             </View>
 
         </View>

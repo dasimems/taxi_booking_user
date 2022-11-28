@@ -1,15 +1,18 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors } from '../assets/data/data';
+import { useNavigation } from '@react-navigation/native';
 
 const ChatCard = ({data}) => {
   const {image, name, messages, status, id} = data;
 
   const [unreadChats, setUnreadChats] = useState(0);
 
+  const navigation = useNavigation();
+
   useEffect(()=>{
 
-    unreadMessages = messages.filter(message => message.status.toLowerCase() === "unread");
+    var unreadMessages = messages.filter(message => message.status.toLowerCase() === "unread");
 
     setUnreadChats(unreadMessages.length);
 
@@ -18,7 +21,9 @@ const ChatCard = ({data}) => {
 
 
   return (
-    <TouchableOpacity style={{justifyContent: "space-between", width: "100%", marginBottom: 20, flexDirection: "row", alignItems: "center"}}>
+    <TouchableOpacity onPress={()=>{
+      navigation.navigate("ShowMessage", {id});
+    }} style={{justifyContent: "space-between", width: "100%", marginBottom: 20, flexDirection: "row", alignItems: "center"}}>
       
       <View style={{flexDirection: "row"}}>
 

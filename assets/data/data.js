@@ -17,6 +17,8 @@ import WalletActive from "../icons/wallet_active.png"
 import ProfileActive from "../icons/profile_active.png"
 import ProfileInActive from "../icons/profile_inactive.png"
 import Settings from "../icons/settings.png"
+import Tail from "../icons/tail.png"
+import TailReceived from "../icons/tail_received.png"
 import MasterCard from "../icons/mastercard_logo.png"
 import SignOut from "../icons/sign_out.png"
 import {StatusBar} from 'react-native';
@@ -291,7 +293,7 @@ export const chats = [
 
             {
                 message: "Wow, that's nice",
-                type: "sent",
+                type: "received",
                 time: "13:09",
                 date: "20/09/22",
                 status: "unread"
@@ -302,7 +304,7 @@ export const chats = [
 
     {
         name: "Duyil Ayomid",
-        id: 1,
+        id: 2,
         status: "offline",
         messages: [
             {
@@ -334,7 +336,7 @@ export const chats = [
 
     {
         name: "Duyil Ayomid",
-        id: 1,
+        id: 3,
         status: "offline",
         messages: [
             {
@@ -366,7 +368,7 @@ export const chats = [
 
     {
         name: "Duyil Ayomid",
-        id: 1,
+        id: 4,
         status: "offline",
         messages: [
             {
@@ -398,7 +400,7 @@ export const chats = [
 
      {
         name: "Duyil Ayomid",
-        id: 1,
+        id: 5,
         status: "online",
         messages: [
             {
@@ -438,7 +440,9 @@ export const icons = {
     mailSent: MailSent,
     settings: Settings,
     signOut: SignOut,
-    masterCard: MasterCard
+    masterCard: MasterCard,
+    chatTailSent: Tail,
+    chatTailReceived: TailReceived
 }
 
 export const terms = {
