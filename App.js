@@ -47,7 +47,7 @@ export default function App() {
 
         <RegisterProvider>
           <ParamsProvider>
-            <StatusBar style='auto' />
+            <StatusBar style='auto' backgroundColor="white" />
             <NavigationContainer>
               <Stack.Navigator 
               screenOptions={{
