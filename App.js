@@ -54,17 +54,41 @@ export default function App() {
                 headerShown: false
               }}>
 
+                <Stack.Screen
+                  name="Login"
+                  component={LoginScreen}
+                />
+
+                <Stack.Screen
+                  name="UserType"
+                  component={UserType}
+                />
+
+                <Stack.Screen
+                  name="Register"
+                  component={RegisterScreen}
+                />
+
+                <Stack.Screen
+                  name="Verification"
+                  component={Verification}
+                />
+                
+                <Stack.Screen
+                  name="FinalRegistration"
+                  component={FinalRegistration}
+                />
 
                 <Stack.Screen
                   name="Home"
                   component={HomeScreen}
                   initialParams={{ active: "Home" }}
                 />
-                
+
                 <Stack.Screen
                   name="Bookings"
                   component={Bookings}
-                  initialParams={{active: "Bookings"}}
+                  initialParams={{ active: "Bookings" }}
                 />
 
                 <Stack.Screen
@@ -89,32 +113,6 @@ export default function App() {
                   name="Profile"
                   component={Profile}
                   initialParams={{ active: "Profile" }}
-                />
-
-
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                />
-
-                <Stack.Screen
-                  name="UserType"
-                  component={UserType}
-                />
-
-                <Stack.Screen
-                  name="Register"
-                  component={RegisterScreen}
-                />
-
-                <Stack.Screen
-                  name="Verification"
-                  component={Verification}
-                />
-                
-                <Stack.Screen
-                  name="FinalRegistration"
-                  component={FinalRegistration}
                 />
 
 

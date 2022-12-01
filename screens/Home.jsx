@@ -63,7 +63,7 @@ const HomeScreen = ({ route }) => {
 
                 }} scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", height: "100%", justifyContent: "space-between", backgroundColor: "rgba(0, 0, 0, .2)" }}>
 
-                    <View style={{height}}>
+                    <View style={{}}>
 
                     </View>
 

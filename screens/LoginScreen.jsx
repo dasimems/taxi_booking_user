@@ -5,17 +5,14 @@ import { CountryList, LogoHeader } from '../components';
 import { icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
+import { useParamsContext, useRegisterContext } from '../context';
 
 const LoginScreen = ({navigation}) => {
 
-    
-    const [formState, setFormState] = useState({
-        mobileCode: "1",
-        countryCode: "us",
-        phoneNumber: "",
-        countryName: "united state of america"
-        
-    });
+
+    const { setActiveParam } = useParamsContext();
+
+    const { registerDetails, setRegisterDetails } = useRegisterContext();
 
     const [search, setSearchValue] = useState("")
 
@@ -25,7 +22,7 @@ const LoginScreen = ({navigation}) => {
 
     useEffect(()=>{
 
-        var {phoneNumber} = formState;
+        var { phoneNumber } = registerDetails;
 
         if(phoneNumber.length > 8){
             setButtonDisabled(false)
@@ -34,7 +31,7 @@ const LoginScreen = ({navigation}) => {
 
         }
 
-    }, [formState])
+    }, [registerDetails])
 
     const {parentContainerStyle, h1, p, container, label, loginInput, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer, absolute} = AllStyle;
 
@@ -72,9 +69,9 @@ const LoginScreen = ({navigation}) => {
 
                     >
 
-                        <Image source={{uri: `https://countryflagsapi.com/png/${formState.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
+                          <Image source={{ uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 20}} />
 
-                        <Text style={{fontSize: 18, marginLeft: 10}}>+{formState.mobileCode}</Text>
+                          <Text style={{ fontSize: 18, marginLeft: 10 }}>+{registerDetails.mobileCode}</Text>
 
                         <FontAwesome name="angle-down" size={17} color="rgba(0, 0, 0, .3)" style={{marginLeft: 5}} />
 
@@ -86,10 +83,10 @@ const LoginScreen = ({navigation}) => {
                         keyboardType="phone-pad" 
                         style={textInputStyle} 
                         placeholder="Enter your phone" 
-                        value={formState.phoneNumber} 
+                          value={registerDetails.phoneNumber} 
                         onChangeText={(text)=>{
-                            setFormState(prevState => {
-                                return(
+                            setRegisterDetails(prevState => {
+                                return (
                                     {
                                         ...prevState,
                                         phoneNumber: text
@@ -112,7 +109,10 @@ const LoginScreen = ({navigation}) => {
 
             <View style={{...styles.loginContainer}} >
 
-                <Button buttonDisabled={buttonDisabled}>
+                <Button buttonDisabled={buttonDisabled} onPress={()=>{
+                      navigation.navigate("Home");
+                      setActiveParam("Home");
+                }}>
                     <Text style={buttonText}>Continue</Text>
                 </Button>
 
@@ -150,15 +150,15 @@ const LoginScreen = ({navigation}) => {
                 
                 <CountryList searched={search} onValuePicked={(item)=>{
 
-                    setFormState(prevState => {
-                        return({
-                            ...prevState,
-                            mobileCode: item["dial_code"].slice(1,),
-                            countryCode: item.code.toLowerCase(),
-                            countryName: item.name
+                      setRegisterDetails(prevState => {
+                          return ({
+                              ...prevState,
+                              mobileCode: item["dial_code"].slice(1,),
+                              countryCode: item.code.toLowerCase(),
+                              countryName: item.name
 
-                        })
-                    })
+                          })
+                      })
                     setCountryMenuOpened(false)
 
                 }} />

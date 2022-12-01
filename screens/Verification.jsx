@@ -3,8 +3,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { HeaderOne } from '../components';
 import { colors, icons } from '../assets/data/data';
+import { useParamsContext } from '../context';
 
 const Verification = ({navigation}) => {
+
+
+
+  const { setActiveParam } = useParamsContext();
 
   const {parentContainerStyle, h1, p} = AllStyle;
   const [codes, setCodes] = useState({
@@ -39,11 +44,25 @@ const Verification = ({navigation}) => {
       })
       codeOneRef.current.focus();
     }else{
+      setCodes({
+        codeOne: "",
+        codeTwo: "",
+        codeThree: "",
+        codeFour: ""
 
-      navigation.navigate("FinalRegistration");
+      })
+
+      navigation.navigate("Home");
+      setActiveParam("Home");
 
     }
   }, [codes])
+
+  const resendVerifCode = useCallback(()=>{
+    setCodeResent(true)
+
+    
+  }, [])
 
   useEffect(()=>{
 
@@ -205,7 +224,9 @@ const Verification = ({navigation}) => {
             
           </View>
 
-          {codeResent? <Text style={{color: "rgba(0, 0, 0, .5)"}}>Resend Code (0:30s)</Text> :<TouchableOpacity >
+          {codeResent? <Text style={{color: "rgba(0, 0, 0, .5)"}}>Resend Code (0:30s)</Text> :<TouchableOpacity onPress={()=>{
+            resendVerifCode()
+          }} >
             <Text style={{color: colors.primary, fontSize: 18}}>Resend Code</Text>
           </TouchableOpacity>}
 
