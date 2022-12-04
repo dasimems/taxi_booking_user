@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { FinalRegistration, LoginScreen, Bookings, RegisterScreen, UserType, Verification, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen } from './screens';
+import { FinalRegistration, LoginScreen, Bookings, RegisterScreen, UserType, Verification, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen } from './screens';
 import {
   useFonts,
   Roboto_100Thin,
@@ -132,6 +132,12 @@ export default function App() {
                   name="Notifications"
                   component={NotificationScreen}
                   initialParams={{ active: "Notifications" }}
+                />
+
+                <Stack.Screen
+                  name="ShareExpenses"
+                  component={ShareExpensesScreen}
+                  initialParams={{ active: "ShareExpenses" }}
                 />
 
 

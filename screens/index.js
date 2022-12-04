@@ -11,4 +11,7 @@ import HomeScreen from "./Home";
 import ShowMessage from "./ShowMessage";
 import SettingsScreen from "./Settings";
 import NotificationScreen from "./Notifications"
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen };
+import ShareExpensesScreen from "./ShareExpenses";
+
+
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen };

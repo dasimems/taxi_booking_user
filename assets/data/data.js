@@ -24,6 +24,10 @@ import SignOut from "../icons/sign_out.png"
 import {StatusBar} from 'react-native';
 import UserImage from "../images/user_image.jpg"
 import { Dimensions } from 'react-native';
+import HighExpenseIcon from "../icons/high_expenses.png"
+import StandardExpenseIcon from "../icons/standard_expenses.png"
+import LowExpenseIcon from "../icons/low_expenses.png"
+import FreeExpensesIcon from "../icons/free_expenses.png"
 
 export const appName = "CarMeee"
 
@@ -289,6 +293,32 @@ export const settingsLink = [
         screenName: "ContactUs"
     },
     
+]
+
+export const expensesLabels = [
+    {
+        label: "High",
+        description: "Expenses shared with passengers will be high.",
+        icon: HighExpenseIcon
+    },
+
+    {
+        label: "Standard",
+        description: "Cost shared with passengers will be standard.",
+        icon: StandardExpenseIcon
+    },
+
+    {
+        label: "Low",
+        description: "Cost shared with passengers will be low.",
+        icon: LowExpenseIcon
+    },
+
+    {
+        label: "Free",
+        description: "I want to help others without sharing expenses.",
+        icon: FreeExpensesIcon
+    }
 ]
 
 export const windowWidth = Dimensions.get('window').width;
