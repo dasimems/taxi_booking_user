@@ -248,6 +248,49 @@ export const bookingHeader = [
     }
 ]
 
+export const settingsLink = [
+    {
+        label: "Notifications",
+        screenName: "Notification"
+    },
+
+    {
+        label: "Share Expenses",
+        screenName: "ShareExpenses"
+    },
+
+    {
+        label: "Security",
+        screenName: "Security"
+    },
+
+    {
+        label: "Language",
+        screenName: "Language"
+    },
+
+    {
+        label: "SOS",
+        screenName: "SOS"
+    },
+
+    {
+        label: "Clear Cache",
+        screenName: "Clear Cache"
+    },
+
+    {
+        label: "Terms and Privacy",
+        screenName: "TermsAndPrivacy"
+    },
+
+    {
+        label: "Contact Us",
+        screenName: "ContactUs"
+    },
+    
+]
+
 export const windowWidth = Dimensions.get('window').width;
 export const windowHeight = Dimensions.get('window').height;
 

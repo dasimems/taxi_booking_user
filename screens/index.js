@@ -9,6 +9,6 @@ import Wallet from "./Wallet";
 import Profile from "./Profile";
 import HomeScreen from "./Home";
 import ShowMessage from "./ShowMessage";
+import SettingsScreen from "./Settings";
 
-
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage };
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen };

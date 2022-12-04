@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { colors, icons, statusBarHeight, userDetails, windowHeight } from '../assets/data/data';
 
-const Profile = ({ route }) => {
+const Profile = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
     const { active } = route.params;
     const { setActiveParam } = useParamsContext();
@@ -134,7 +134,9 @@ const Profile = ({ route }) => {
 
                         <View style={{ width: "100%", marginTop: 40 }}>
 
-                            <TouchableOpacity style={{width: "100%", flexDirection: "row", alignItems: "center", marginBottom: 20}}>
+                            <TouchableOpacity style={{width: "100%", flexDirection: "row", alignItems: "center", marginBottom: 20}} onPress={()=>{
+                                navigation.navigate("Settings");
+                            }}>
                                 <View style={{width: 30, height: 30, backgroundColor: colors.primary, alignItems: "center", justifyContent: "center", borderRadius: 7}}>
                                     <Image source={icons.settings} style={{height: 15, width: 15, resizeMode: "contain"}} />
 
