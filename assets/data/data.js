@@ -251,7 +251,7 @@ export const bookingHeader = [
 export const settingsLink = [
     {
         label: "Notifications",
-        screenName: "Notification"
+        screenName: "Notifications"
     },
 
     {

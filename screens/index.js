@@ -10,5 +10,5 @@ import Profile from "./Profile";
 import HomeScreen from "./Home";
 import ShowMessage from "./ShowMessage";
 import SettingsScreen from "./Settings";
-
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen };
+import NotificationScreen from "./Notifications"
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen };
