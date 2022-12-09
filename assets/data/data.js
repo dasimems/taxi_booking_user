@@ -32,6 +32,11 @@ import SystemSuccess from "../icons/system_success.png"
 import SystemCancelled from "../icons/system_cancelled.png"
 import Promotion from "../icons/promotion.png"
 import Wallet from "../icons/wallet.png"
+import Bank from "../icons/bank.png"
+import PayPal from "../icons/paypal.png"
+import PayTm from "../icons/paytm.png"
+import GooglePay from "../icons/google_pay.png"
+import Upi from "../icons/upi.png"
 
 export const appName = "CarMeee"
 
@@ -588,6 +593,38 @@ export const notification = [
         description: "Invite friends - Get 3 coupons each",
         icon: Promotion,
         id: 6
+    },
+]
+
+export const withdrawalOptions = [
+    {
+        label: "Bank Account",
+        icon: Bank,
+        link: "bank_account"
+    },
+
+    {
+        label: "Paytm Wallet",
+        icon: PayTm,
+        link: "pay_tm"
+    },
+
+    {
+        label: "Gpay Wallet",
+        icon: GooglePay,
+        link: "g_pay"
+    },
+
+    {
+        label: "PayPal Wallet",
+        icon: PayPal,
+        link: "pay_pal"
+    },
+
+    {
+        label: "Upi Id",
+        icon: Upi,
+        link: "upi_id"
     },
 ]
 

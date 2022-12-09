@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
-import { Header, Nav } from '../components';
+import { Header, Modal, Nav } from '../components';
 import { useParamsContext } from '../context';
-import { Ionicons } from '@expo/vector-icons';
-import { card, colors, icons, statusBarHeight, transactions, windowHeight } from '../assets/data/data';
+import { Ionicons, Fontisto } from '@expo/vector-icons';
+import { card, colors, icons, statusBarHeight, transactions, windowHeight, withdrawalOptions } from '../assets/data/data';
 
 const Wallet = ({ route }) => {
     const { parentContainerStyle } = AllStyle;
@@ -12,6 +12,7 @@ const Wallet = ({ route }) => {
     const { setActiveParam } = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
+    const [withdrawalActive, setWithdrawalActive] = useState(false)
 
 
     useEffect(() => {
@@ -70,7 +71,21 @@ const Wallet = ({ route }) => {
 
                         </View>
 
-                        <View style={{width: "100%", marginTop: 40}}>
+                        <View style={{width: "100%"}}>
+
+                            <View style={{flexDirection: "row", width: "100%", alignItems: "center", justifyContent: "center", marginVertical: 20}}>
+
+                                <TouchableOpacity style={{width: "45%", backgroundColor: colors.primary, paddingVertical: 15, alignItems: "center", justifyContent: "center", borderRadius: 10}} onPress={()=>{
+                                    setWithdrawalActive(true)
+                                }}>
+                                    <Text style={{color: "white", fontSize: 16}}>Withdraw</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={{ width: "45%", backgroundColor: colors.primary, paddingVertical: 15, alignItems: "center", justifyContent: "center", borderRadius: 10, marginLeft: "10%" }}>
+                                    <Text style={{ color: "white", fontSize: 16 }}>Top Up</Text>
+                                </TouchableOpacity>
+
+                            </View>
 
                             <Text style={{fontSize: 18}}>Transaction History</Text>
 
@@ -141,6 +156,7 @@ const Wallet = ({ route }) => {
                             />
 
                         </View>
+
                     </View>
 
                 </ScrollView>
@@ -154,6 +170,50 @@ const Wallet = ({ route }) => {
                 setNavHeight(height)
 
             }} />
+
+            {withdrawalActive && (<Modal>
+
+                <TouchableOpacity style={{flex: 1}} onPress={()=>{
+                    setWithdrawalActive(false)
+                }}>
+
+                </TouchableOpacity>
+
+                <View style={{width: "100%", borderTopLeftRadius: 15, borderTopRightRadius: 15, paddingVertical: 30, paddingHorizontal: 20, backgroundColor: "white"}}>
+
+                    <Text style={{textAlign: "center", fontSize: 17}}>Withdraw To</Text>
+
+                    <FlatList 
+
+                        data={withdrawalOptions}
+                        extraData={withdrawalOptions}
+                        keyExtractor={(item)=> item.link}
+                        renderItem={({item}) => {
+                            var {label, icon} = item;
+                            return (
+
+                                <TouchableOpacity style={{paddingVertical: 20, borderBottomColor: "rgba(0, 0, 0, .1)", flexDirection: "row", alignItems: "center", borderBottomWidth: 1, justifyContent: "space-between"}}>
+
+                                    <View style={{flexDirection: "row", alignItems: "center"}}>
+
+                                        <Image source={icon} style={{width: 35, height: 35, resizeMode: "contain"}} />
+ 
+                                        <Text style={{marginLeft: 20}}>{label}</Text>
+
+                                    </View>
+
+                                    <Fontisto name="angle-right" color="rgba(0, 0, 0, .8)" size={14} />
+
+                                </TouchableOpacity>
+
+                            )
+                        }}
+                    
+                    />
+
+                </View>
+
+            </Modal>)}
 
         </SafeAreaView>
     )
