@@ -28,6 +28,10 @@ import HighExpenseIcon from "../icons/high_expenses.png"
 import StandardExpenseIcon from "../icons/standard_expenses.png"
 import LowExpenseIcon from "../icons/low_expenses.png"
 import FreeExpensesIcon from "../icons/free_expenses.png"
+import SystemSuccess from "../icons/system_success.png"
+import SystemCancelled from "../icons/system_cancelled.png"
+import Promotion from "../icons/promotion.png"
+import Wallet from "../icons/wallet.png"
 
 export const appName = "CarMeee"
 
@@ -515,7 +519,12 @@ export const icons = {
     signOut: SignOut,
     masterCard: MasterCard,
     chatTailSent: Tail,
-    chatTailReceived: TailReceived
+    chatTailReceived: TailReceived,
+    systemSuccess: SystemSuccess,
+    systemCancelled: SystemCancelled,
+    promotion: Promotion,
+    wallet: Wallet,
+
 }
 
 export const terms = {
@@ -537,6 +546,50 @@ export const card = {
     cardType: "master card"
 
 }
+
+export const notification = [
+    {
+        title: "System",
+        description: "Your booking #1234 has been successfully placed",
+        icon: SystemSuccess,
+        id: 1
+    },
+
+    {
+        title: "Promotion",
+        description: "Invite friends - Get 3 coupons each",
+        icon: Promotion,
+        id: 2
+    },
+
+    {
+        title: "Promotion",
+        description: "Invite friends - Get 3 coupons each",
+        icon: Promotion,
+        id: 3
+    },
+
+    {
+        title: "System",
+        description: "Your booking #1234 has been cancelled successfully",
+        icon: SystemCancelled,
+        id: 4
+    },
+
+    {
+        title: "System",
+        description: "Thank you, your transaction is complete",
+        icon: Wallet,
+        id: 5
+    },
+
+    {
+        title: "Promotion",
+        description: "Invite friends - Get 3 coupons each",
+        icon: Promotion,
+        id: 6
+    },
+]
 
 export const transactions = [
     {

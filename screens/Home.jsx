@@ -7,7 +7,7 @@ import { colors, statusBarHeight, windowHeight } from '../assets/data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 
-const HomeScreen = ({ route }) => {
+const HomeScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
     const { active } = route.params;
     const { setActiveParam } = useParamsContext();
@@ -41,7 +41,10 @@ const HomeScreen = ({ route }) => {
 
                 <LinearGradient colors={['#ffffff', 'transparent']} style={{flexDirection: "row", justifyContent: "flex-end", paddingHorizontal: 20}}>
 
-                    <TouchableOpacity style={{backgroundColor: "white", borderRadius: 10, padding: 5, marginTop: 20}}>
+                    <TouchableOpacity style={{backgroundColor: "white", borderRadius: 10, padding: 5, marginTop: 20}} onPress={()=>{
+                        navigation.navigate("AllNotification");
+                        setActiveParam("Notification")
+                    }}>
 
                         <View>
                             <Feather name="bell" size={24} color="black" />
