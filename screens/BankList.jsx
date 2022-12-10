@@ -100,7 +100,9 @@ const BankList = ({ route, navigation }) => {
 
                         />
 
-                        <TouchableOpacity style={{paddingVertical: 15, width: "100%", paddingHorizontal: 10, alignItems: "center", justifyContent: "center", borderRadius: 10, borderWidth: 2, borderColor: colors.primary, marginTop: 20}}>
+                        <TouchableOpacity onPress={()=>{
+                            navigation.navigate("NewAccount", {bankType});
+                        }} style={{paddingVertical: 15, width: "100%", paddingHorizontal: 10, alignItems: "center", justifyContent: "center", borderRadius: 10, borderWidth: 2, borderColor: colors.primary, marginTop: 20}}>
                             <Text style={{color: colors.primary, fontSize: 18}}>Add New Account</Text>
                         </TouchableOpacity>
 

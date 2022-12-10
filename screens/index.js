@@ -14,6 +14,6 @@ import NotificationScreen from "./Notifications"
 import ShareExpensesScreen from "./ShareExpenses";
 import AllNotification from "./AllNotifications";
 import BankList from "./BankList";
+import NewAccount from "./NewAccount";
 
-
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification, BankList };
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification, BankList, NewAccount };
