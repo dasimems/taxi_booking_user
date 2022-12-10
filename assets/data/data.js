@@ -628,6 +628,54 @@ export const withdrawalOptions = [
     },
 ]
 
+export const bankAccounts = [
+    {
+        bankName: "First Bank of Nigeria",
+        accountNo: "3150686249",
+        branchName: "FirstBank",
+        accountName: "Omonimewa Isaac Duyilemi",
+        bankType: "bank_account",
+        id: 1
+    },
+
+    {
+        bankName: "First Bank of Nigeria",
+        accountNo: "3150686249",
+        branchName: "FirstBank",
+        accountName: "Omonimewa Isaac Duyilemi",
+        bankType: "bank_account",
+        id: 2
+    },
+
+    {
+        bankName: "PayPal",
+        accountNo: "isaacsen63@gmail.com",
+        branchName: "",
+        accountName: "Omonimewa Isaac Duyilemi",
+        bankType: "pay_pal",
+        id: 3
+    },
+
+    {
+        bankName: "PayPal",
+        accountNo: "isaacsen63@gmail.com",
+        branchName: "",
+        accountName: "Omonimewa Isaac Duyilemi",
+        bankType: "pay_pal",
+        id: 4
+    },
+
+    {
+        bankName: "PayTm",
+        accountNo: "isaacsen63@gmail.com",
+        branchName: "",
+        accountName: "Omonimewa Isaac Duyilemi",
+        bankType: "pay_tm",
+        id: 5
+    },
+    
+]
+
 export const transactions = [
     {
         image: UserImage,

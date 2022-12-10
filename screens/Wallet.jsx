@@ -6,7 +6,7 @@ import { useParamsContext } from '../context';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { card, colors, icons, statusBarHeight, transactions, windowHeight, withdrawalOptions } from '../assets/data/data';
 
-const Wallet = ({ route }) => {
+const Wallet = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
     const { active } = route.params;
     const { setActiveParam } = useParamsContext();
@@ -174,6 +174,7 @@ const Wallet = ({ route }) => {
             {withdrawalActive && (<Modal>
 
                 <TouchableOpacity style={{flex: 1}} onPress={()=>{
+
                     setWithdrawalActive(false)
                 }}>
 
@@ -189,10 +190,12 @@ const Wallet = ({ route }) => {
                         extraData={withdrawalOptions}
                         keyExtractor={(item)=> item.link}
                         renderItem={({item}) => {
-                            var {label, icon} = item;
+                            var {label, icon, link} = item;
                             return (
 
-                                <TouchableOpacity style={{paddingVertical: 20, borderBottomColor: "rgba(0, 0, 0, .1)", flexDirection: "row", alignItems: "center", borderBottomWidth: 1, justifyContent: "space-between"}}>
+                                <TouchableOpacity style={{paddingVertical: 20, borderBottomColor: "rgba(0, 0, 0, .1)", flexDirection: "row", alignItems: "center", borderBottomWidth: 1, justifyContent: "space-between"}} onPress={()=>{
+                                    navigation.navigate("BankList", {bankType: link});
+                                }}>
 
                                     <View style={{flexDirection: "row", alignItems: "center"}}>
 

@@ -13,6 +13,7 @@ import SettingsScreen from "./Settings";
 import NotificationScreen from "./Notifications"
 import ShareExpensesScreen from "./ShareExpenses";
 import AllNotification from "./AllNotifications";
+import BankList from "./BankList";
 
 
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification };
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification, BankList };
