@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, FlatList, Pressable } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
-import {  Header, MessageCard, MessageNav, Nav } from '../components';
+import {  Header, MessageCard, MessageNav, Modal, Nav } from '../components';
 import { useParamsContext } from '../context'; 
-import { Fontisto } from '@expo/vector-icons';
+import { Fontisto, Ionicons } from '@expo/vector-icons';
 import { chats, colors, statusBarHeight, windowHeight } from '../assets/data/data';
 
 const ShowMessage = ({ route, navigation }) => {
@@ -13,6 +13,9 @@ const ShowMessage = ({ route, navigation }) => {
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
     const [userDetails, setUserDetails] = useState(null)
+    const [otherOption, setOtherOption] = useState(false)
+
+    console.log(otherOption)
 
 
     useEffect(() => {
@@ -93,7 +96,7 @@ const ShowMessage = ({ route, navigation }) => {
 
             </View>
             
-            <MessageNav onLayout={(event) => {
+            <MessageNav openOtherOption={setOtherOption} onLayout={(event) => {
                 var { height } = event.nativeEvent.layout;
 
                 setNavHeight(height)
@@ -101,12 +104,53 @@ const ShowMessage = ({ route, navigation }) => {
             }} />
 
 
-            {/* <Nav onLayout={(event) => {
-                var { height } = event.nativeEvent.layout;
+            {otherOption && 
+            (<Modal>
 
-                setNavHeight(height)
+                <TouchableOpacity onPress={() => {
+                    setOtherOption(false)
+                }} style={{flex: 1}}></TouchableOpacity>
 
-            }} /> */}
+                <View style={{padding: 13}}>
+
+                    <View style={{ backgroundColor: "white", borderRadius: 10, marginBottom: 8, overflow: "hidden"}}>
+
+                        <TouchableOpacity style={{paddingHorizontal: 20, paddingVertical: 10, flexDirection: "row", alignItems: "center", borderBottomColor: "rgba(0, 0, 0, .08)", borderBottomWidth: 1}}>
+
+                            <Ionicons name='camera-outline' size={28} color={colors.primary} />
+
+                            <Text style={{color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15}}>Camera</Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ paddingHorizontal: 20, paddingVertical: 10, flexDirection: "row", alignItems: "center", borderBottomColor: "rgba(0, 0, 0, .08)", borderBottomWidth: 1 }}>
+
+                            <Ionicons name='image-outline' size={28} color={colors.primary} />
+
+                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>Photos & Videos</Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ paddingHorizontal: 20, paddingVertical: 10, flexDirection: "row", alignItems: "center", borderBottomColor: "rgba(0, 0, 0, .08)", borderBottomWidth: 1 }}>
+
+                            <Ionicons name='document-text-outline' size={28} color={colors.primary} />
+
+                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>Documents</Text>
+
+                        </TouchableOpacity>
+
+                    </View>
+
+                    <Pressable onPress={()=>{
+                        setOtherOption(false)
+                    }} style={{ padding: 15, width: "100%", alignItems: "center", backgroundColor: "white", borderRadius: 10 }}>
+                        <Text style={{fontSize: 17}}>Cancel</Text>
+                    </Pressable>
+
+                </View>
+                
+            </Modal>)
+            }
 
             
 

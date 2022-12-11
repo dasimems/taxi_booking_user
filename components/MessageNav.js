@@ -4,7 +4,7 @@ import { colors, windowWidth } from '../assets/data/data';
 import { Ionicons } from '@expo/vector-icons';
 import AllStyle from '../assets/styles/Styles';
 
-const MessageNav = ({style, ...props}) => {
+const MessageNav = ({ style, openOtherOption, ...props}) => {
 
     const [messageValue, setMessageValue] = useState("");
     const  {textInputStyle} = AllStyle;
@@ -57,7 +57,11 @@ const MessageNav = ({style, ...props}) => {
         
         <View style={{width: "100%", flexDirection: "row", padding: 20, alignItems: "center", justifyContent: "space-between"}}>
 
-            <TouchableOpacity style={{borderWidth: 2, borderColor: colors.primary, borderRadius: 5, borderBottomLeftRadius: 0, justifyContent: "center", alignItems: "center"}}>
+            <TouchableOpacity onPress={()=>{
+
+                  openOtherOption(true)
+                
+            }} style={{borderWidth: 2, borderColor: colors.primary, borderRadius: 5, borderBottomLeftRadius: 0, justifyContent: "center", alignItems: "center"}}>
 
                 <Ionicons name="add" size={20} color={colors.primary} />
 
