@@ -14,11 +14,7 @@ const HeaderOne = ({backTo, children}) => {
 
         <TouchableOpacity onPress={()=>{
 
-          if(backTo){
-
-            navigation.navigate(backTo);
-
-          }
+          navigation.goBack();
 
 
         }}><FontAwesome name="angle-left" size={30} color="black" style={{marginLeft: 5}} /></TouchableOpacity>

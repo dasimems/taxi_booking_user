@@ -5,7 +5,7 @@ import { CountryList, LogoHeader } from '../components';
 import { colors, icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
-import { useRegisterContext } from '../context';
+import { useRegisterContext, useUserContext } from '../context';
 
 const RegisterScreen = ({navigation}) => {
 
@@ -78,7 +78,7 @@ const RegisterScreen = ({navigation}) => {
 
                     >
 
-                        <Image source={{uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 20}} />
+                        <Image source={{uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
 
                         <Text style={{fontSize: 18, marginLeft: 10}}>+{registerDetails.mobileCode}</Text>
 

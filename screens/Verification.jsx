@@ -126,7 +126,7 @@ const Verification = ({navigation}) => {
 
               <Text style={{...h1, marginTop: 30}}>Verification</Text>
 
-              <Text style={{...p}}>Enter Verification code that is sent to <Text style={{color: "black"}}>+2349036634645</Text> by SMS</Text>
+              <Text style={{...p}}>Enter Verification code that is sent to <Text style={{color: "black"}}>{`+${registerDetails.mobileCode}${registerDetails.phoneNumber}`}</Text> by SMS</Text>
 
             </View>
 

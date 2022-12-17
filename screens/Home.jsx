@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Tex
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { Button, Header, Modal, Nav } from '../components';
-import { useParamsContext } from '../context';
+import { useNavigationContext, useParamsContext, useUserContext } from '../context';
 import { colors, icons, images, passengers, statusBarHeight, windowHeight, windowWidth } from '../assets/data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, Ionicons, Entypo, Fontisto, FontAwesome5, FontAwesome } from '@expo/vector-icons';
@@ -12,11 +12,10 @@ const HomeScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
     const { active } = route.params;
     const { setActiveParam } = useParamsContext();
+    const { setTo, locationState } = useNavigationContext();
+    const {userDetails} = useUserContext();
     const [headerHeight, setHeaderHeight] = useState(0)
-    const [navHeight, setNavHeight] = useState(0)
-    const [userDetails, setUserDetails] = useState({
-        userType: "passenger"
-    })
+    const [navHeight, setNavHeight] = useState(0);
 
     const [bottomContainerHeight, setBottomContainerHeight] = useState(0)
     const [mainContainerHeight, setMainContainerHeight] = useState(0)
@@ -35,9 +34,23 @@ const HomeScreen = ({ route, navigation }) => {
     const [userAccepts, setUserAccepts] = useState(false);
     const [destinationReached, setDestinationReached] = useState(false);
     const [cancelRequest, setCancelRequest] = useState(false);
+    const [userRequest, setUserRequest] = useState(false);
     const [activeStar, setActiveStar] = useState(0)
     const [comment, setComment] = useState("")
     const [finishButtonDisabled, setFinishButtonDisabled] = useState(true)
+    const[passengerNumber, setPassengerNumber] = useState(1);
+
+    const handleIncrease = useCallback(()=>{
+        if(parseInt(passengerNumber) < 4){
+            setPassengerNumber(prevNum => prevNum + 1);
+        }
+    }, [passengerNumber])
+
+    const handleDecrease = useCallback(() => {
+        if (parseInt(passengerNumber) > 1) {
+            setPassengerNumber(prevNum => prevNum - 1);
+        }
+    }, [passengerNumber])
 
     useEffect(()=>{
         var {price, cancelation} = agreement
@@ -255,7 +268,7 @@ const HomeScreen = ({ route, navigation }) => {
                         </View>}
 
 
-                        {!start && <View style={{ position: "absolute", bottom: 0, width: "100%"}}>
+                        {userDetails?.userType?.toLowerCase() !== "passenger" && locationState?.to == "" && !start && <View style={{ position: "absolute", bottom: 0, width: "100%"}}>
 
                             <FlatList 
                                 style={{width: "100%"}}
@@ -335,6 +348,18 @@ const HomeScreen = ({ route, navigation }) => {
 
                         </View>}
 
+                        {locationState?.to !== "" && <View style={{ position: "absolute", bottom: 0, width: "100%", paddingHorizontal: 20, paddingVertical: 15 }}>
+
+                            <TouchableOpacity style={{width: "100%", paddingVertical: 15, alignItems: "center", justifyContent: "center", backgroundColor: colors.primary, borderRadius: 10}} onPress={()=>{
+                                setUserRequest(true)
+                            }}>
+
+                                <Text style={{fontSize: 17, color: "white"}}>Request</Text>
+
+                            </TouchableOpacity>
+
+                        </View>}
+
 
                     </View>
 
@@ -343,10 +368,15 @@ const HomeScreen = ({ route, navigation }) => {
                         <View style={{...loginInput, marginTop: 0, marginBottom: 10, flexDirection: "row", justifyContent: "space-between" }}>
 
                             <TextInput
-
                                 style={{flex: 1, paddingHorizontal: 12}}
                                 placeholder="Where would you like to go?"
                                 placeholderTextColor="rgba(0, 0, 0, .3)"
+                                value={locationState?.to}
+                                onChangeText={(text)=>{
+
+                                    setTo(text);
+
+                                }}
                             
                             />
 
@@ -388,6 +418,8 @@ const HomeScreen = ({ route, navigation }) => {
 
             {accept && (<Modal>
                 <TouchableOpacity style={{flex: 1}} onPress={()=>{
+
+                    setAccept(false)
 
                 }}>
 
@@ -452,10 +484,86 @@ const HomeScreen = ({ route, navigation }) => {
                  
             </Modal>)}
             
+            {userRequest && <Modal>
+
+                <TouchableOpacity style={{ flex: 1 }} onPress={() => {
+                    setUserRequest(false)
+                }}>
+
+                </TouchableOpacity>
+
+                <View style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: "white", padding: 20, paddingVertical: 35 }}>
+                    <Text style={{ fontSize: 20, textAlign: "center" }}>Confirm Ride</Text>
+
+                    <View style={{flexDirection: "row", alignItems: "center", marginTop: 30, justifyContent: "center", width: "100%"}}>
+
+                        <TouchableOpacity style={{width: 25, height: 25, backgroundColor: "rgba(0, 0, 0, .1)", borderRadius: 100, alignItems: "center", justifyContent: "center" }} onPress={handleDecrease}>
+                            <FontAwesome name="minus" color="black" size={15} />
+                        </TouchableOpacity>
+
+                        <TextInput
+                            value={passengerNumber.toString()}
+                            keyboardType ="number-pad"
+                            style={{width: 50, height: 50, marginHorizontal: 15, borderColor: "rgba(0, 0, 0, .2)", borderWidth: 1.5, borderRadius: 10, textAlign: "center", paddingHorizontal: 5, alignItems: "center", justifyContent: "center", fontSize: 16}}
+                            onChangeText={(text)=>{
+
+                                if(text === ""){
+                                    text = "1";
+                                }
+
+                                if(text.toString().length > 1){
+
+                                    text = text.slice(1);
+
+                                }
+
+                                if (parseInt(text) === 0){
+                                    text = "1";
+                                }
+
+                                if (Number.isNaN(text)){
+                                    return;
+                                }
+
+                                if (!Number.isInteger(parseInt(text))){
+                                    return;
+
+                                }
+
+                                if(parseInt(text) > 4){
+                                    text = "4";
+                                }
+                                setPassengerNumber(parseInt(text))
+                            }}
+
+                        />
+
+                        <TouchableOpacity style={{width: 25, height: 25, backgroundColor: "rgba(0, 0, 0, .1)", borderRadius: 100, alignItems: "center", justifyContent: "center" }} onPress={handleIncrease}>
+                            <FontAwesome name="plus" color="black" size={15} />
+                        </TouchableOpacity>
+
+                    </View>
+
+                    <Text style={{textAlign: "center", marginTop: 15, fontSize: 16, color: "rgba(0, 0, 0, .9)"}}>Numbers of passengers</Text>
+
+                    <TouchableOpacity style={{ width: "100%", paddingVertical: 15, alignItems: "center", borderRadius: 15, backgroundColor: colors.primary, marginTop: 30 }} onPress={() => {
+                        
+                    }}>
+
+                        <Text style={{ fontSize: 17, color: "white" }}>Request</Text>
+
+                        
+
+                    </TouchableOpacity>
+                </View>
+            </Modal>}
 
             {letsGo && (<Modal>
 
-                <TouchableOpacity style={{ flex: 1 }}>
+                <TouchableOpacity style={{ flex: 1 }} onPress={()=>{
+
+                    setLetsGo(false)
+                }}>
 
                 </TouchableOpacity>
                 
@@ -475,7 +583,10 @@ const HomeScreen = ({ route, navigation }) => {
 
             {userAccepts && (<Modal>
 
-                <TouchableOpacity style={{ flex: 1 }}>
+                <TouchableOpacity style={{ flex: 1 }} onPress={()=>{
+
+                    setUserAccepts(false)
+                }}>
 
                 </TouchableOpacity>
                 
@@ -542,8 +653,8 @@ const HomeScreen = ({ route, navigation }) => {
 
 
                     <TouchableOpacity style={{ width: "100%", paddingVertical: 15, alignItems: "center", borderRadius: 15, backgroundColor: colors.danger, marginTop: 50 }} onPress={()=>{
-                        setUserAccepts(false)
-                        setCancelRequest(true);
+                        // setUserAccepts(false)
+                        // setCancelRequest(true);
                     }}>
 
                         <Text style={{ fontSize: 17, color: "white" }}>Cancel Request</Text>
@@ -555,7 +666,9 @@ const HomeScreen = ({ route, navigation }) => {
 
             {destinationReached && <Modal>
 
-                <TouchableOpacity style={{ flex: 1 }}>
+                <TouchableOpacity style={{ flex: 1 }} onPress={()=>{
+                    setDestinationReached(false)
+                }}>
 
                 </TouchableOpacity>
 
@@ -626,7 +739,9 @@ const HomeScreen = ({ route, navigation }) => {
 
             {cancelRequest && (<Modal>
 
-                <TouchableOpacity style={{ flex: 1 }}>
+                <TouchableOpacity style={{ flex: 1 }} onPress={()=>{
+                    setCancelRequest(false)
+                }}>
 
                 </TouchableOpacity>
 

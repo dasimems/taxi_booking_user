@@ -80,7 +80,7 @@ const LoginScreen = ({navigation}) => {
 
                     >
 
-                          <Image source={{ uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 20}} />
+                          <Image source={{ uri: `https://countryflagsapi.com/png/${registerDetails.countryCode.toLowerCase()}`}} style={{width: 20, height: 20, resizeMode: "cover", borderRadius: 20}} />
 
                           <Text style={{ fontSize: 18, marginLeft: 10 }}>+{registerDetails.mobileCode}</Text>
 

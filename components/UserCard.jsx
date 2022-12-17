@@ -2,13 +2,13 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import { colors, windowWidth } from '../assets/data/data';
 
-const UserCard = ({active, onElementClick, data}) => {
+const UserCard = ({active, onElementClick, data, index}) => {
   const {icon, label} = data;
 
   // console.log(data)
   return (
 
-    <Pressable style={{ width: (windowWidth * 0.45), height: 200, marginRight: 20}} onPress={()=>{
+    <Pressable style={{ width: (windowWidth * 0.39), height: 200, marginLeft: index !== 0? 10 : 0}} onPress={()=>{
 
       onElementClick(label)
 
