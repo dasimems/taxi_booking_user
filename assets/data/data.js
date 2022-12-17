@@ -23,6 +23,8 @@ import MasterCard from "../icons/mastercard_logo.png"
 import SignOut from "../icons/sign_out.png"
 import {StatusBar} from 'react-native';
 import UserImage from "../images/user_image.jpg"
+import Car from "../images/toyota_car.png"
+import Design from "../images/back_car_design.png"
 import { Dimensions } from 'react-native';
 import HighExpenseIcon from "../icons/high_expenses.png"
 import StandardExpenseIcon from "../icons/standard_expenses.png"
@@ -36,6 +38,7 @@ import Bank from "../icons/bank.png"
 import PayPal from "../icons/paypal.png"
 import PayTm from "../icons/paytm.png"
 import GooglePay from "../icons/google_pay.png"
+import Line from "../icons/line.png"
 import Upi from "../icons/upi.png"
 
 export const appName = "CarMeee"
@@ -336,8 +339,46 @@ export const windowHeight = Dimensions.get('window').height;
 export {countries}
 
 export const images = {
-    logo: Logo
+    logo: Logo,
+    profileImage: UserImage,
+    car: Car,
+    design: Design
 }
+
+export const passengers = [
+    {
+        name: "Duyil Ayomid",
+        rating: "4.5",
+        id: 1,
+        passenger: "3",
+        location: "5th Avenue",
+        destination: "2nd Avenue N",
+        price: "8.50",
+        profileImage: UserImage
+    },
+
+    {
+        name: "Duyil Ayomid",
+        rating: "4.5",
+        id: 2,
+        passenger: "2",
+        location: "5th Avenue",
+        destination: "2nd Avenue N",
+        price: "8.50",
+        profileImage: UserImage
+    },
+
+    {
+        name: "Duyil Ayomid",
+        rating: "4.5",
+        id: 3,
+        passenger: "1",
+        location: "5th Avenue",
+        destination: "2nd Avenue N",
+        price: "8.50",
+        profileImage: UserImage
+    }
+]
 
 export const userTypeLinks = [
     {
@@ -529,6 +570,7 @@ export const icons = {
     systemCancelled: SystemCancelled,
     promotion: Promotion,
     wallet: Wallet,
+    line: Line
 
 }
 
@@ -728,7 +770,8 @@ export const colors= {
     secondaryLight: "#febb1b",
     danger: "#BC101A",
     dangerLight: "#ef4b54",
-    success: "#25D416"
+    success: "#25D416",
+    tertiary: "#5162FA"
 
 }
 

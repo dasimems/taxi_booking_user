@@ -18,6 +18,8 @@ import {
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
 import { ParamsProvider, RegisterProvider } from './context';
+import { NavigationProvider } from './context/navigationContext';
+import { UserProvider } from './context/userContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,128 +47,127 @@ export default function App() {
     return (
       <>
 
-        <RegisterProvider>
-          <ParamsProvider>
-            <StatusBar style='auto' backgroundColor="white" />
-            <NavigationContainer>
-              <Stack.Navigator 
-              screenOptions={{
-                headerShown: false
-              }}>
+        <UserProvider>
+          <RegisterProvider>
+            <NavigationProvider>
+              <ParamsProvider>
+                <StatusBar style='auto' backgroundColor="white" />
+                <NavigationContainer>
+                  <Stack.Navigator 
+                  screenOptions={{
+                    headerShown: false
+                  }}>
 
-                <Stack.Screen
-                  name="Home"
-                  component={HomeScreen}
-                  initialParams={{ active: "Home" }}
-                />
+                    {/* <Stack.Screen
+                      name="Home"
+                      component={HomeScreen}
+                      initialParams={{ active: "Home" }}
+                    /> */}
 
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                />
+                    <Stack.Screen
+                      name="Login"
+                      component={LoginScreen}
+                    />
 
-                <Stack.Screen
-                  name="UserType"
-                  component={UserType}
-                />
+                    <Stack.Screen
+                      name="UserType"
+                      component={UserType}
+                    />
 
-                <Stack.Screen
-                  name="Register"
-                  component={RegisterScreen}
-                />
+                    <Stack.Screen
+                      name="Register"
+                      component={RegisterScreen}
+                    />
 
-                <Stack.Screen
-                  name="Verification"
-                  component={Verification}
-                />
-                
-                <Stack.Screen
-                  name="FinalRegistration"
-                  component={FinalRegistration}
-                />
+                    <Stack.Screen
+                      name="Verification"
+                      component={Verification}
+                    />
+                    
+                    <Stack.Screen
+                      name="FinalRegistration"
+                      component={FinalRegistration}
+                    />
 
-                {/* <Stack.Screen
-                  name="Home"
-                  component={HomeScreen}
-                  initialParams={{ active: "Home" }}
-                /> */}
+                    <Stack.Screen
+                      name="Home"
+                      component={HomeScreen}
+                      initialParams={{ active: "Home" }}
+                    />
 
-                <Stack.Screen
-                  name="Bookings"
-                  component={Bookings}
-                  initialParams={{ active: "Bookings" }}
-                />
+                    <Stack.Screen
+                      name="Bookings"
+                      component={Bookings}
+                      initialParams={{ active: "Bookings" }}
+                    />
 
-                <Stack.Screen
-                  name="ShowMessage"
-                  component={ShowMessage}
-                  initialParams={{ active: "ShowMessage" }}
-                />
+                    <Stack.Screen
+                      name="ShowMessage"
+                      component={ShowMessage}
+                      initialParams={{ active: "ShowMessage" }}
+                    />
 
-                <Stack.Screen
-                  name="Inbox"
-                  component={Inbox}
-                  initialParams={{ active: "Inbox" }}
-                />
+                    <Stack.Screen
+                      name="Inbox"
+                      component={Inbox}
+                      initialParams={{ active: "Inbox" }}
+                    />
 
-                <Stack.Screen
-                  name="Wallet"
-                  component={Wallet}
-                  initialParams={{ active: "Wallet" }}
-                />
+                    <Stack.Screen
+                      name="Wallet"
+                      component={Wallet}
+                      initialParams={{ active: "Wallet" }}
+                    />
 
-                <Stack.Screen
-                  name="Profile"
-                  component={Profile}
-                  initialParams={{ active: "Profile" }}
-                />
+                    <Stack.Screen
+                      name="Profile"
+                      component={Profile}
+                      initialParams={{ active: "Profile" }}
+                    />
 
-                <Stack.Screen
-                  name="Settings"
-                  component={SettingsScreen}
-                  initialParams={{ active: "Settings" }}
-                />
+                    <Stack.Screen
+                      name="Settings"
+                      component={SettingsScreen}
+                      initialParams={{ active: "Settings" }}
+                    />
 
-                
-                <Stack.Screen
-                  name="Notifications"
-                  component={NotificationScreen}
-                  initialParams={{ active: "Notifications" }}
-                />
+                    
+                    <Stack.Screen
+                      name="Notifications"
+                      component={NotificationScreen}
+                      initialParams={{ active: "Notifications" }}
+                    />
 
-                <Stack.Screen
-                  name="ShareExpenses"
-                  component={ShareExpensesScreen}
-                  initialParams={{ active: "ShareExpenses" }}
-                />
+                    <Stack.Screen
+                      name="ShareExpenses"
+                      component={ShareExpensesScreen}
+                      initialParams={{ active: "ShareExpenses" }}
+                    />
 
-                <Stack.Screen
-                  name="AllNotification"
-                  component={AllNotification}
-                  initialParams={{ active: "Notification" }}
-                />
-                
-                <Stack.Screen
-                  name="BankList"
-                  component={BankList}
-                  initialParams={{ active: "BankList" }}
-                />
+                    <Stack.Screen
+                      name="AllNotification"
+                      component={AllNotification}
+                      initialParams={{ active: "Notification" }}
+                    />
+                    
+                    <Stack.Screen
+                      name="BankList"
+                      component={BankList}
+                      initialParams={{ active: "BankList" }}
+                    />
 
-                <Stack.Screen
-                  name="NewAccount"
-                  component={NewAccount}
-                  initialParams={{ active: "NewAccount" }}
-                />
+                    <Stack.Screen
+                      name="NewAccount"
+                      component={NewAccount}
+                      initialParams={{ active: "NewAccount" }}
+                    />
 
-                {/* <Stack.Screen
-                  name="FinalRegistration"
-                  component={FinalRegistration}
-                /> */}
-
-              </Stack.Navigator>
-            </NavigationContainer>
-          </ParamsProvider>
-        </RegisterProvider>
+                  </Stack.Navigator>
+                </NavigationContainer>
+              </ParamsProvider>
+            </NavigationProvider>
+          </RegisterProvider>
+        </UserProvider>
       </>
     );
   }

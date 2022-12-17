@@ -26,7 +26,7 @@ const Profile = ({ route, navigation }) => {
     const { h1 } = AllStyle;
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{height: "100%"}}>
 
             <Header onLayout={(event) => {
                 var { height } = event.nativeEvent.layout;
@@ -38,7 +38,7 @@ const Profile = ({ route, navigation }) => {
             </Header>
 
 
-            <View style={{ height: windowHeight - (headerHeight - statusBarHeight) }}>
+            <View style={{ flex: 1 }}>
 
                 <ScrollView scrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", justifyContent: "space-between", paddingTop: 10, paddingBottom: (navHeight + 40) }}>
 

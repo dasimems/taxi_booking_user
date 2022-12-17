@@ -38,7 +38,7 @@ const Bookings = ({route}) => {
     const {h1} = AllStyle;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height: "100%"}}>
         
       <Header onLayout={(event) => {
         var{height} = event.nativeEvent.layout;
@@ -78,7 +78,7 @@ const Bookings = ({route}) => {
 
       </Header>
 
-      <View style={{ height: windowHeight - (headerHeight - statusBarHeight)  }}>
+      <View style={{ flex: 1  }}>
 
         <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ ...parentContainerStyle, width: "100%", paddingBottom: (navHeight + 20)}}>
 
