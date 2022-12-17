@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { Button, LogoHeader, UserCard, UserTypeList } from '../components';
 import { userTypeLinks } from '../assets/data/data';
-import { useRegisterContext } from '../context';
+import { useRegisterContext, useUserContext } from '../context';
 
 const UserType = ({navigation}) => {
 
@@ -11,6 +11,16 @@ const UserType = ({navigation}) => {
 
   const [user, setUser] = useState("")
   const {registerDetails, setRegisterDetails} = useRegisterContext();
+
+  const {userDetails} = useUserContext();
+  useEffect(() => {
+
+    if (userDetails) {
+
+      navigation.navigate("Home");
+
+    }
+  }, [userDetails, navigation])
 
   return (
     <SafeAreaView>

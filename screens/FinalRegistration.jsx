@@ -9,7 +9,16 @@ const FinalRegistration = ({navigation}) => {
 
     const {registerDetails, setRegisterDetails} = useRegisterContext();
 
-    
+    const { userDetails } = useUserContext();
+
+    useEffect(() => {
+
+        if (userDetails) {
+
+            navigation.navigate("Home");
+
+        }
+    }, [userDetails, navigation])
 
     const {parentContainerStyle, h1, p, label, loginInput, textInputStyle, pDefault, buttonText} = AllStyle;
 

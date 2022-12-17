@@ -19,6 +19,15 @@ const RegisterScreen = ({navigation}) => {
     const [countryMenuOpened, setCountryMenuOpened] = useState(false)
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
+    const { userDetails } = useUserContext();
+    useEffect(() => {
+
+        if (userDetails) {
+
+            navigation.navigate("Home");
+
+        }
+    }, [userDetails, navigation])
 
     useEffect(()=>{
 

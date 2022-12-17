@@ -17,9 +17,7 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
-import { ParamsProvider, RegisterProvider } from './context';
-import { NavigationProvider } from './context/navigationContext';
-import { UserProvider } from './context/userContext';
+import { NavigationProvider, ParamsProvider, RegisterProvider, UserProvider } from './context';
 
 const Stack = createNativeStackNavigator();
 

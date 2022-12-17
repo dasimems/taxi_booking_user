@@ -1,11 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 
-const NavigationContext = React.createContext();
+
+const initialValue = {
+    from: "",
+    to: "",
+    present: ""
+}
+
+const reducer = (state, action) => {
+
+    var {type, payload} = action;
+
+    switch(type){
+
+        case "setFrom":
+
+            return {...state, from: payload}
+
+        case "setTo":
+
+            return { ...state, to: payload }
+
+        case "present":
+
+            return { ...state, present: payload }
+
+        default: 
+
+            return state;
+
+    }
+}
+
+var NavigationContext = React.createContext();
 
 export const NavigationProvider = ({ children }) => {
 
+    const [state, dispatch] = useReducer(reducer, initialValue)
+
     return (
-        <NavigationContext.Provider>
+        <NavigationContext.Provider value={{ ...state }}>
 
             {children}
 
@@ -21,4 +55,4 @@ const useNavigationContext = () => {
 
 }
 
-export default useNavigationContext();
+export default useNavigationContext;

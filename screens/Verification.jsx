@@ -3,12 +3,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { HeaderOne } from '../components';
 import { colors, icons } from '../assets/data/data';
-import { useParamsContext } from '../context';
+import { useParamsContext, useRegisterContext, useUserContext } from '../context';
 
 const Verification = ({navigation}) => {
 
 
-
+  const { clearRegDetails, registerDetails } = useRegisterContext();
+  const { addUserDetails } = useUserContext();
   const { setActiveParam } = useParamsContext();
 
   const {parentContainerStyle, h1, p} = AllStyle;
@@ -32,6 +33,13 @@ const Verification = ({navigation}) => {
 
   const verify = useCallback(()=>{
     var {codeOne, codeTwo, codeThree, codeFour} = codes;
+    var userType = "passenger";
+
+    if (registerDetails.userType !== "" && (registerDetails.userType.toLowerCase() === "passenger" || registerDetails.userType.toLowerCase() === "driver")){
+
+      userType = registerDetails.userType;
+
+    }
     var allCode = `${codeOne}${codeTwo}${codeThree}${codeFour}`;
     if(allCode !== "5555"){
       setWrongCode(true);
@@ -43,6 +51,7 @@ const Verification = ({navigation}) => {
 
       })
       codeOneRef.current.focus();
+      
     }else{
       setCodes({
         codeOne: "",
@@ -52,11 +61,34 @@ const Verification = ({navigation}) => {
 
       })
 
-      navigation.navigate("Home");
-      setActiveParam("Home");
+      var userDetails = {
+        phoneNumber: registerDetails.phoneNumber,
+        userType,
+        countryCode: registerDetails.countryCode,
+        mobileCode: registerDetails.mobileCode,
+        countryName: registerDetails.countryName,
+        passCodeSet: registerDetails.passCodeSet,
+        passCode: registerDetails.passCode,
+        faceSet: registerDetails.faceSet,
+        vehicleType: registerDetails.vehicleType,
+        vehicleBrand: registerDetails.vehicleBrand,
+        model: registerDetails.model,
+        number: registerDetails.number,
+        insuranceNumber: registerDetails.insuranceNumber
+      }
+
+      addUserDetails(userDetails).then(res => {
+
+        clearRegDetails().then(res => {
+  
+          navigation.navigate("Home");
+          setActiveParam("Home");
+        })
+      })
+
 
     }
-  }, [codes])
+  }, [codes, registerDetails, navigation])
 
   const resendVerifCode = useCallback(()=>{
     setCodeResent(true)

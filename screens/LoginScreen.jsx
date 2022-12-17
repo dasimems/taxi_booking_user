@@ -5,12 +5,14 @@ import { CountryList, LogoHeader } from '../components';
 import { icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
-import { useParamsContext, useRegisterContext } from '../context';
+import { useParamsContext, useRegisterContext, useUserContext } from '../context';
 
 const LoginScreen = ({navigation}) => {
 
 
     const { setActiveParam } = useParamsContext();
+
+    const { userDetails } = useUserContext()
 
     const { registerDetails, setRegisterDetails } = useRegisterContext();
 
@@ -32,6 +34,15 @@ const LoginScreen = ({navigation}) => {
         }
 
     }, [registerDetails])
+    
+    useEffect(() => {
+
+        if(userDetails){
+
+            navigation.navigate("Home");
+
+        }
+     }, [userDetails, navigation])
 
     const {parentContainerStyle, h1, p, container, label, loginInput, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer, absolute} = AllStyle;
 
@@ -110,8 +121,8 @@ const LoginScreen = ({navigation}) => {
             <View style={{...styles.loginContainer}} >
 
                 <Button buttonDisabled={buttonDisabled} onPress={()=>{
-                      navigation.navigate("Home");
-                      setActiveParam("Home");
+                      navigation.navigate("Verification");
+                      setActiveParam("Verification");
                 }}>
                     <Text style={buttonText}>Continue</Text>
                 </Button>
