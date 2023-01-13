@@ -7,6 +7,7 @@ import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
 import { useRegisterContext, useUserContext } from '../context';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const RegisterScreen = ({navigation}) => {
 
@@ -21,6 +22,7 @@ const RegisterScreen = ({navigation}) => {
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const { userDetails } = useUserContext();
+    const isFocused = useIsFocused();
     useEffect(() => {
 
         if (userDetails) {
@@ -28,7 +30,7 @@ const RegisterScreen = ({navigation}) => {
             navigation.navigate("Home");
 
         }
-    }, [userDetails, navigation])
+    }, [userDetails, navigation, isFocused])
 
     useEffect(()=>{
 

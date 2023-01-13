@@ -4,6 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { statusBarHeight, windowHeight } from '../assets/data/data';
+import { useIsFocused } from '@react-navigation/native';
 
 const ScreenTemplate = ({ route }) => {
     const { parentContainerStyle } = AllStyle;
@@ -11,13 +12,18 @@ const ScreenTemplate = ({ route }) => {
     const { setActiveParam } = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, BackHandler, TouchableOpacity, TextInput, FlatList, Image } from 'react-native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AllStyle from '../assets/styles/Styles'
 import { Button, Header, Modal, Nav } from '../components';
@@ -16,6 +16,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {GOOGLE_PLACES_KEY} from "@env";
 import translate from '../translation';
 import LoadingScreen from './LoadingScreen';
+import { useIsFocused } from '@react-navigation/native';
 
 const HomeScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -31,6 +32,7 @@ const HomeScreen = ({ route, navigation }) => {
     const [selectedId, setSelectedId] = useState("");
     const [passengerDetails, setPassengerDetails] = useState(null);
     const [start, setStart] = useState(false)
+    const isFocused = useIsFocused();
     const [agreement, setAgreement] = useState({
         price: false,
         cancelation: false
@@ -62,6 +64,17 @@ const HomeScreen = ({ route, navigation }) => {
             setPassengerNumber(prevNum => prevNum - 1);
         }
     }, [passengerNumber])
+
+    const fitMap = () => {
+
+        mapRef.current.fitToSuppliedMarkers(["present", "to"], {
+        top: 50,
+        left: 50,
+        bottom: 50,
+        right: 50
+    })
+
+    }
 
     useEffect(()=>{
         var {price, cancelation} = agreement
@@ -95,9 +108,17 @@ const HomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(!userDetails){
+            navigation.navigate("UserType");
+        }
 
-    }, [active])
+        if(isFocused){
+
+            setActiveParam(active);
+        }
+
+
+    }, [active, isFocused])
 
     useEffect(()=>{
 
@@ -110,6 +131,18 @@ const HomeScreen = ({ route, navigation }) => {
         }
 
     }, [selectedId])
+
+    useEffect(()=>{
+        const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        ()=>{
+
+            BackHandler.exitApp()
+
+        },
+        );
+
+    }, [userDetails])
 
     useEffect(() => {
     (async () => {
@@ -125,7 +158,6 @@ const HomeScreen = ({ route, navigation }) => {
     //   setTo(location?.coords)
 
       let locations = await Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
-      console.log(locations);
       return;
     })();
 
@@ -136,12 +168,7 @@ const HomeScreen = ({ route, navigation }) => {
 
     if(!locationState.present || !locationState.to || !locationState.from) return;
 
-    mapRef.current.fitToSuppliedMarkers(["present", "to"], {
-        top: 50,
-        left: 50,
-        bottom: 50,
-        right: 50
-    })
+    fitMap();
 
   }, [locationState])
 
@@ -267,6 +294,11 @@ const HomeScreen = ({ route, navigation }) => {
 
                         {locationState?.present && (
                             <MapView
+                                // onRegionChangeComplete={()=>{
+
+                                //     fitMap();
+
+                                // }}
                                 ref={mapRef}
                                 style={{height: "100%", flex: 1}}
                                 initialRegion={{
@@ -399,7 +431,7 @@ const HomeScreen = ({ route, navigation }) => {
                         </View>}
 
 
-                        {userDetails?.userType?.toLowerCase() !== "passenger" && userDetails?.userType?.toLowerCase() === "driver" && locationState?.to && !start && <View style={{ position: "absolute", bottom: 0, width: "100%"}}>
+                        {userDetails?.userType?.toLowerCase() !== "passenger" && userDetails?.userType?.toLowerCase() === "driver" && !start && <View style={{ position: "absolute", bottom: 0, width: "100%"}}>
 
                             <FlatList 
                                 style={{width: "100%"}}
@@ -479,7 +511,7 @@ const HomeScreen = ({ route, navigation }) => {
 
                         </View>}
 
-                        {locationState?.to?.longitude && locationState?.to?.latitude && ((locationState?.to?.latitude !== locationState?.present?.latitude) || (locationState?.to?.longitude !== locationState?.present?.longitude)) && <View style={{ position: "absolute", bottom: 0, width: "100%", paddingHorizontal: 20, paddingVertical: 15 }}>
+                        {locationState?.to?.longitude && locationState?.to?.latitude && userDetails?.userType?.toLowerCase() !== "driver" && ((locationState?.to?.latitude !== locationState?.present?.latitude) || (locationState?.to?.longitude !== locationState?.present?.longitude)) && <View style={{ position: "absolute", bottom: 0, width: "100%", paddingHorizontal: 20, paddingVertical: 15 }}>
 
                             <TouchableOpacity style={{width: "100%", paddingVertical: 15, alignItems: "center", justifyContent: "center", backgroundColor: colors.primary, borderRadius: 10}} onPress={()=>{
                                 setUserRequest(true)
@@ -564,6 +596,7 @@ const HomeScreen = ({ route, navigation }) => {
                                     var {name, geometry} = place?.result || {};
                                     var {location} = geometry || {};
                                     var data = {name, latitude: location?.lat, longitude: location?.lng}
+                                    
                                     setTo(data)
                                     setFrom(data)
                                 }}

@@ -6,6 +6,8 @@ import { useParamsContext } from '../context';
 import { Fontisto, Ionicons } from '@expo/vector-icons';
 import { chats, colors, statusBarHeight, windowHeight } from '../assets/data/data';
 import translate from '../translation';
+import { Camera, CameraType } from 'expo-camera';
+import { useIsFocused } from '@react-navigation/native';
 
 const ShowMessage = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -15,13 +17,41 @@ const ShowMessage = ({ route, navigation }) => {
     const [navHeight, setNavHeight] = useState(0)
     const [userDetails, setUserDetails] = useState(null)
     const [otherOption, setOtherOption] = useState(false)
+    const [cameraOpen, setCameraOpen] = useState(true)
+    const [type, setType] = useState(CameraType.back);
+    const [cameraPermission, setCameraPermission] = useState(null);
+    const [galleryPermission, setGalleryPermission] = useState(null);
+    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const isFocused = useIsFocused();
 
-    console.log(otherOption)
+    if(!permission){
 
+    }
+
+    function toggleCameraType() {
+        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+    }
+
+    useEffect(()=>{
+
+        (async () =>{const cameraPermission = await Camera.requestPermissionsAsync();
+
+        setCameraPermission(cameraPermission.status === 'granted');
+
+        const imagePermission = await ImagePicker.getMediaLibraryPermissionsAsync();
+        console.log(imagePermission.status);
+
+        setGalleryPermission(imagePermission.status === 'granted');})()
+
+    }, [])
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
+
+            setActiveParam(active);
+        }
+
 
         const messageDetails = chats.filter(chat => parseInt(chat.id) === parseInt(id));
 
@@ -29,7 +59,7 @@ const ShowMessage = ({ route, navigation }) => {
 
 
 
-    }, [active, id])
+    }, [active, id, isFocused])
 
 
     const { h1 } = AllStyle;
@@ -116,7 +146,9 @@ const ShowMessage = ({ route, navigation }) => {
 
                     <View style={{ backgroundColor: "white", borderRadius: 10, marginBottom: 8, overflow: "hidden"}}>
 
-                        <TouchableOpacity style={{paddingHorizontal: 20, paddingVertical: 10, flexDirection: "row", alignItems: "center", borderBottomColor: "rgba(0, 0, 0, .08)", borderBottomWidth: 1}}>
+                        <TouchableOpacity style={{paddingHorizontal: 20, paddingVertical: 10, flexDirection: "row", alignItems: "center", borderBottomColor: "rgba(0, 0, 0, .08)", borderBottomWidth: 1}} onPress={()=>{
+                            setCameraOpen(true)
+                        }}>
 
                             <Ionicons name='camera-outline' size={28} color={colors.primary} />
 
@@ -152,6 +184,18 @@ const ShowMessage = ({ route, navigation }) => {
                 
             </Modal>)
             }
+
+            {cameraOpen && (
+                <View style={{flex: 1, position: "absolute", top: 0, left: 0, zIndex: 9999}}>
+                    <Camera style={{flex: 1}} type={type} ratio={'1:1'}>
+                        <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
+                            <Text style={styles.text}>Flip Camera</Text>
+                        </TouchableOpacity>
+                        </View>
+                    </Camera>
+                    </View>
+            )}
 
             
 

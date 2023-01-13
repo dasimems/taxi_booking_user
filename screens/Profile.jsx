@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { colors, icons, statusBarHeight, userDetails, windowHeight } from '../assets/data/data';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Profile = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -15,14 +16,19 @@ const Profile = ({ route, navigation }) => {
     const { setActiveParam } = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
+    const isFocused = useIsFocused();
 
     const { userImage, name, email, mobileNumber, joinedDate, carModel, plateNumber } = userDetails;
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
+            
+            setActiveParam(active);
+        }
 
-    }, [active])
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 

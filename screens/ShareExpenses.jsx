@@ -6,6 +6,7 @@ import { useParamsContext } from '../context';
 import { expensesLabels, statusBarHeight, windowHeight } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const ShareExpensesScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -14,13 +15,18 @@ const ShareExpensesScreen = ({ route, navigation }) => {
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
     const [activeExpense, setActiveExpense] = useState("high")
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 

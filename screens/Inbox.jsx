@@ -7,6 +7,7 @@ import { chats, statusBarHeight, windowHeight } from '../assets/data/data';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Inbox = ({ route }) => {
     const { parentContainerStyle, loginInput, textInputStyle } = AllStyle;
@@ -17,13 +18,17 @@ const Inbox = ({ route }) => {
     const [searchOpened, setSearchOpened] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const searchRef = useRef()
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+    }, [active, isFocused])
 
     useEffect(()=>{
 

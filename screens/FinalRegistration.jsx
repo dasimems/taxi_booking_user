@@ -4,12 +4,14 @@ import AllStyle from '../assets/styles/Styles'
 import { Button, HeaderOne, LogoHeader } from '../components';
 import {useRegisterContext} from "../context"
 import { FontAwesome } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
 
 const FinalRegistration = ({navigation}) => {
 
     const {registerDetails, setRegisterDetails} = useRegisterContext();
 
     const { userDetails } = useUserContext();
+    const isFocused = useIsFocused();
 
     useEffect(() => {
 
@@ -18,7 +20,8 @@ const FinalRegistration = ({navigation}) => {
             navigation.navigate("Home");
 
         }
-    }, [userDetails, navigation])
+        
+    }, [userDetails, navigation, isFocused])
 
     const {parentContainerStyle, h1, p, label, loginInput, textInputStyle, pDefault, buttonText} = AllStyle;
 

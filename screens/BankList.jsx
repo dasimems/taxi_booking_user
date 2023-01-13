@@ -5,6 +5,7 @@ import { Button, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { bankAccounts, colors, statusBarHeight, windowHeight, withdrawalOptions } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
 
 const BankList = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -15,13 +16,17 @@ const BankList = ({ route, navigation }) => {
     const [accounts, setAccount] = useState([])
     const [bankImage, setBankImage] = useState("")
     const [chosenAccount, setChosenAccount] = useState("")
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+    }, [active, isFocused])
 
     useEffect(()=>{
         var activeWithdrawOption = withdrawalOptions.filter(option => option.link === bankType);

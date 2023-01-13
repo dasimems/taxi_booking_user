@@ -5,6 +5,7 @@ import { BookingCards, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { bookingHeader, bookings, colors, statusBarHeight, windowHeight } from '../assets/data/data';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Bookings = ({route}) => {
     const {parentContainerStyle} = AllStyle;
@@ -14,13 +15,18 @@ const Bookings = ({route}) => {
     const [navHeight, setNavHeight] = useState(0)
     const [activeBooking, setActiveBookings] = useState("");
     const [listedBooking, setListedBooking] = useState([])
+    const isFocused = useIsFocused();
     
     
     useEffect(()=> {
-      
-      setActiveParam(active);
 
-    }, [active])
+      if(isFocused){
+
+        setActiveParam(active);
+      }
+      
+
+    }, [active, isFocused])
 
     useEffect(()=>{
 

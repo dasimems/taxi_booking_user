@@ -6,6 +6,7 @@ import { useParamsContext } from '../context';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { card, colors, icons, statusBarHeight, transactions, windowHeight, withdrawalOptions } from '../assets/data/data';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Wallet = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -14,13 +15,17 @@ const Wallet = ({ route, navigation }) => {
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
     const [withdrawalActive, setWithdrawalActive] = useState(false)
+  const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 

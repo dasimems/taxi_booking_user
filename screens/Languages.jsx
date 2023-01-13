@@ -7,6 +7,7 @@ import { languages, statusBarHeight, windowHeight } from '../assets/data/data';
 
 import { Fontisto } from '@expo/vector-icons';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Languages = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -15,13 +16,18 @@ const Languages = ({ route, navigation }) => {
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
     const {setLanguageCode} = useLanguageContext();
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 

@@ -10,7 +10,6 @@ export const LanguageProvider = ({children}) => {
     const setLanguageCode = useCallback((code) => {
 
         translate.locale = code;
-        console.log(code)
 
     }, [translate])
 

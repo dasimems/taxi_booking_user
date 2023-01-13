@@ -5,6 +5,7 @@ import { Button, LogoHeader, UserCard, UserTypeList } from '../components';
 import { userTypeLinks } from '../assets/data/data';
 import { useRegisterContext, useUserContext } from '../context';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const UserType = ({navigation}) => {
 
@@ -13,6 +14,7 @@ const UserType = ({navigation}) => {
   const [user, setUser] = useState("")
   const {registerDetails, setRegisterDetails} = useRegisterContext();
 
+  const isFocused = useIsFocused();
   const {userDetails} = useUserContext();
   useEffect(() => {
 
@@ -21,7 +23,7 @@ const UserType = ({navigation}) => {
       navigation.navigate("Home");
 
     }
-  }, [userDetails, navigation])
+  }, [userDetails, navigation, isFocused])
 
   return (
     <SafeAreaView>

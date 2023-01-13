@@ -9,6 +9,7 @@ import { useParamsContext, useRegisterContext, useUserContext } from '../context
 
 import { getLocales, getCalendars } from 'expo-localization';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const LoginScreen = ({navigation}) => {
 
@@ -24,6 +25,7 @@ const LoginScreen = ({navigation}) => {
     const [countryMenuOpened, setCountryMenuOpened] = useState(false)
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
+    const isFocused = useIsFocused();
 
     useEffect(()=>{
 
@@ -45,7 +47,7 @@ const LoginScreen = ({navigation}) => {
             navigation.navigate("Home");
 
         }
-     }, [userDetails, navigation])
+     }, [userDetails, navigation, isFocused])
 
     const {parentContainerStyle, h1, p, container, label, loginInput, textInputStyle, buttonText, otherButton, buttonTextTwo, buttonIcons, linkStyle, pDefault, dividerText, divider, dividerContainer, absolute} = AllStyle;
 

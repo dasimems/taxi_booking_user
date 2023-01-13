@@ -5,6 +5,7 @@ import { HeaderOne } from '../components';
 import { colors, icons } from '../assets/data/data';
 import { useParamsContext, useRegisterContext, useUserContext } from '../context';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
 
 const Verification = ({navigation}) => {
 
@@ -12,6 +13,7 @@ const Verification = ({navigation}) => {
   const { clearRegDetails, registerDetails } = useRegisterContext();
   const { addUserDetails } = useUserContext();
   const { setActiveParam } = useParamsContext();
+    const isFocused = useIsFocused();
 
   const {parentContainerStyle, h1, p} = AllStyle;
   const [codes, setCodes] = useState({
@@ -25,7 +27,17 @@ const Verification = ({navigation}) => {
 
   const [codeResent, setCodeResent] = useState(false)
 
-  const [belowText, setBelowText] = useState("Enter 4 digit Code")
+  const [belowText, setBelowText] = useState(translate.t("enterDigit"))
+  
+  const {userDetails} = useUserContext();
+  useEffect(() => {
+
+    if (userDetails) {
+
+      navigation.navigate("Home");
+
+    }
+  }, [userDetails, navigation, isFocused])
 
   const codeTwoRef = useRef(),
         codeOneRef = useRef(),

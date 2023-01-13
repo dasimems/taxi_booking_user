@@ -6,6 +6,8 @@ import { useParamsContext } from '../context';
 import { colors, notification, statusBarHeight, windowHeight } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
 import translate from '../translation';
+import { useIsFocused } from '@react-navigation/native';
+
 
 const AllNotification = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -13,13 +15,18 @@ const AllNotification = ({ route, navigation }) => {
     const { setActiveParam } = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
 
-        setActiveParam(active);
+        if(isFocused){
 
-    }, [active])
+            setActiveParam(active);
+        }
+
+
+    }, [active, isFocused])
 
     const { h1 } = AllStyle;
 
