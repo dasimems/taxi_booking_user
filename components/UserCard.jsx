@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import { colors, windowWidth } from '../assets/data/data';
+import translate from '../translation';
 
 const UserCard = ({active, onElementClick, data, index}) => {
   const {icon, label} = data;
@@ -32,7 +33,7 @@ const UserCard = ({active, onElementClick, data, index}) => {
 
         <View style={{borderRadius: 10, overflow: 'hidden', height: "99%", width: "99%", backgroundColor: active? colors.primary : "white", alignItems: "center", justifyContent: "space-between", paddingVertical: 30, paddingHorizontal: 10}}>
           <Image source={icon} style={{width: 100, resizeMode: "contain"}} />
-          <Text style={{fontSize: 22, color: "rgba(0, 0, 0, .6)"}}>{label}</Text>
+          <Text style={{fontSize: 22, color: "rgba(0, 0, 0, .6)"}}>{translate.t(label.toLowerCase())}</Text>
 
         </View>
           

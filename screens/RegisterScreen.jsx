@@ -6,6 +6,7 @@ import { colors, icons } from '../assets/data/data';
 import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
 import { useRegisterContext, useUserContext } from '../context';
+import translate from '../translation';
 
 const RegisterScreen = ({navigation}) => {
 
@@ -56,11 +57,11 @@ const RegisterScreen = ({navigation}) => {
 
                 <LogoHeader />
 
-                <Text style={{...h1, fontFamily: "Roboto_700Bold"}}>Register</Text>
+                <Text style={{...h1, fontFamily: "Roboto_700Bold"}}>{translate.t("register")}</Text>
 
-                <Text style={p}>Welcome back to <Text style={{color: "rgba(0, 0, 0, 1)"}}>Carmee,</Text> enter your details below to continue.</Text>
+                <Text style={p}>{translate.t("loginSubtitle")}</Text>
 
-                <Text style={{...label, width: "100%", marginTop: 20}}>Enter your phone</Text>
+                <Text style={{...label, width: "100%", marginTop: 20}}>{translate.t("phoneRequestLabel")}</Text>
 
                 <View style={{...loginInput, marginTop: 20}}>
 
@@ -91,7 +92,7 @@ const RegisterScreen = ({navigation}) => {
                         dataDetectorTypes="phoneNumber" 
                         keyboardType="phone-pad" 
                         style={textInputStyle} 
-                        placeholder="Enter your phone" 
+                        placeholder={translate.t("phoneRequestLabel")} 
                         value={registerDetails.phoneNumber} 
                         onChangeText={(text)=>{
                             setRegisterDetails(prevState => {
@@ -107,7 +108,7 @@ const RegisterScreen = ({navigation}) => {
 
                 </View>
 
-                <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
+                {/* <View style={{flexDirection: "row", width: "100%", justifyContent: "space-between", marginTop: 20, alignItems: "center"}}>
                     <Text>Passcode</Text>
                     <Pressable style={{width: 50, height: 25, backgroundColor: registerDetails.passCodeSet? colors.primary : "rgba(0, 0, 0, .1)", borderRadius: 50, padding: 1, alignItems: registerDetails.passCodeSet? "flex-end": "flex-start"}}
                     
@@ -145,7 +146,7 @@ const RegisterScreen = ({navigation}) => {
                     >
                         <View style={{width: 23, height: 23, backgroundColor: "white", borderRadius: 50}}></View>
                     </Pressable>
-                </View>
+                </View> */}
 
                 
                 
@@ -159,15 +160,15 @@ const RegisterScreen = ({navigation}) => {
                 <Button onPress={()=>{
                     navigation.navigate("Verification")
                 }} buttonDisabled={buttonDisabled}>
-                    <Text style={buttonText}>Continue</Text>
+                    <Text style={buttonText}>{translate.t("continue")}</Text>
                 </Button>
 
                 <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 0}}>
-                    <Text style={{...pDefault}}>Already have an account?</Text>
+                    <Text style={{...pDefault}}>{translate.t("userQuestion")}</Text>
 
                     <TouchableOpacity onPress={()=>{
                         navigation.navigate("Login")
-                    }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Login</Text></TouchableOpacity>
+                    }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>{translate.t("login")}</Text></TouchableOpacity>
                 </View>
 
             </View>

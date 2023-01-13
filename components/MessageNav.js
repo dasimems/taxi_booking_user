@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { colors, windowWidth } from '../assets/data/data';
 import { Ionicons } from '@expo/vector-icons';
 import AllStyle from '../assets/styles/Styles';
+import translate from '../translation';
 
 const MessageNav = ({ style, openOtherOption, ...props}) => {
 
@@ -75,7 +76,7 @@ const MessageNav = ({ style, openOtherOption, ...props}) => {
              onBlur={()=>{
                 setSearchFocus(false)
              }}
-             placeholder="Message"
+             placeholder={translate.t("message")}
              multiline
              ref={inputRef}
              value={messageValue}

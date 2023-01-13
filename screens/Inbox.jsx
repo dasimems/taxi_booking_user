@@ -6,6 +6,7 @@ import { useParamsContext } from '../context';
 import { chats, statusBarHeight, windowHeight } from '../assets/data/data';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons';
+import translate from '../translation';
 
 const Inbox = ({ route }) => {
     const { parentContainerStyle, loginInput, textInputStyle } = AllStyle;
@@ -46,7 +47,7 @@ const Inbox = ({ route }) => {
 
                 <View style={{ marginVertical: 30, alignItems: "center", justifyContent: "space-between", flexDirection: "row"}}>
 
-                    {!searchOpened && <Text style={{ ...h1, textAlign: "left" }}>Messages</Text>}
+                    {!searchOpened && <Text style={{ ...h1, textAlign: "left" }}>{translate.t("message")}</Text>}
 
                     {searchOpened? 
                     

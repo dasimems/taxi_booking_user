@@ -265,35 +265,35 @@ export const bookingHeader = [
 ]
 
 export const settingsLink = [
-    {
-        label: "Notifications",
-        screenName: "Notifications"
-    },
+    // {
+    //     label: "Notifications",
+    //     screenName: "Notifications"
+    // },
 
     {
         label: "Share Expenses",
         screenName: "ShareExpenses"
     },
 
-    {
-        label: "Security",
-        screenName: "Security"
-    },
+    // {
+    //     label: "Security",
+    //     screenName: "Security"
+    // },
 
     {
-        label: "Language",
-        screenName: "Language"
+        label: "Languages",
+        screenName: "Languages"
     },
 
-    {
-        label: "SOS",
-        screenName: "SOS"
-    },
+    // {
+    //     label: "SOS",
+    //     screenName: "SOS"
+    // },
 
-    {
-        label: "Clear Cache",
-        screenName: "Clear Cache"
-    },
+    // {
+    //     label: "Clear Cache",
+    //     screenName: "Clear Cache"
+    // },
 
     {
         label: "Terms and Privacy",
@@ -307,28 +307,44 @@ export const settingsLink = [
     
 ]
 
+export const languages = [
+    {
+        label: "English",
+        code: "en"
+    },
+
+    {
+        label: "Spanish",
+        code: "es"
+    }
+]
+
 export const expensesLabels = [
     {
         label: "High",
         description: "Expenses shared with passengers will be high.",
+        descriptionTranslation: "highText",
         icon: HighExpenseIcon
     },
 
     {
         label: "Standard",
         description: "Cost shared with passengers will be standard.",
+        descriptionTranslation: "standardText",
         icon: StandardExpenseIcon
     },
 
     {
         label: "Low",
         description: "Cost shared with passengers will be low.",
+        descriptionTranslation: "lowText",
         icon: LowExpenseIcon
     },
 
     {
         label: "Free",
         description: "I want to help others without sharing expenses.",
+        descriptionTranslation: "freeText",
         icon: FreeExpensesIcon
     }
 ]

@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { colors, icons, statusBarHeight, userDetails, windowHeight } from '../assets/data/data';
+import translate from '../translation';
 
 const Profile = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -73,7 +74,7 @@ const Profile = ({ route, navigation }) => {
                                     </View>
 
                                     <Text style={{fontWeight: "bold", fontSize: 18, marginTop: 9}}>4.8</Text>
-                                    <Text style={{color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1}}>Ratings</Text>
+                                    <Text style={{color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1}}>{translate.t("ratings")}</Text>
 
                                 </View>
 
@@ -86,7 +87,7 @@ const Profile = ({ route, navigation }) => {
                                     </View>
 
                                     <Text style={{ fontWeight: "bold", fontSize: 18, marginTop: 9 }}>279</Text>
-                                    <Text style={{ color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1 }}>Trips</Text>
+                                    <Text style={{ color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1 }}>{translate.t("trips")}</Text>
 
                                 </View>
 
@@ -100,7 +101,7 @@ const Profile = ({ route, navigation }) => {
                                     </View>
 
                                     <Text style={{ fontWeight: "bold", fontSize: 18, marginTop: 9 }}>5</Text>
-                                    <Text style={{ color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1 }}>Years</Text>
+                                    <Text style={{ color: "rgba(0, 0, 0, .5)", fontSize: 16, marginTop: 1 }}>{translate.t("years")}</Text>
 
                                 </View>
 
@@ -113,19 +114,19 @@ const Profile = ({ route, navigation }) => {
                         <View style={{ width: "100%", marginTop: 40 }}>
 
                             <View style={{width: "100%", flexDirection: "row", justifyContent: "space-between", marginBottom: 20}}>
-                                <Text style={{fontSize: 16, color: "rgba(0, 0, 0, .5)"}}>Member Since</Text>
+                                <Text style={{fontSize: 16, color: "rgba(0, 0, 0, .5)"}}>{translate.t("memberSince")}</Text>
                                 <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)", fontWeight: "bold" }}>{joinedDate}</Text>
 
                             </View>
 
                             <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
-                                <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)" }}>Car Model</Text>
+                                <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)" }}>{translate.t("carModel")}</Text>
                                 <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)", fontWeight: "bold" }}>{carModel}</Text>
 
                             </View>
 
                             <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
-                                <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)" }}>Plate Number</Text>
+                                <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)" }}>{translate.t("plateNumber")}</Text>
                                 <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, .5)", fontWeight: "bold" }}>{plateNumber}</Text>
 
                             </View>
@@ -142,7 +143,7 @@ const Profile = ({ route, navigation }) => {
 
                                 </View>
 
-                                <Text style={{marginLeft: 15, fontSize: 16, color: "rgba(0, 0, 0, .7)"}}>Settings</Text>
+                                <Text style={{marginLeft: 15, fontSize: 16, color: "rgba(0, 0, 0, .7)"}}>{translate.t("settings")}</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ width: "100%", flexDirection: "row", alignItems: "center", marginBottom: 20 }}>
@@ -151,7 +152,7 @@ const Profile = ({ route, navigation }) => {
 
                                 </View>
 
-                                <Text style={{ marginLeft: 15, fontSize: 16, color: "rgba(0, 0, 0, .7)" }}>Sign Out</Text>
+                                <Text style={{ marginLeft: 15, fontSize: 16, color: "rgba(0, 0, 0, .7)" }}>{translate.t("signOut")}</Text>
                             </TouchableOpacity>
 
                         </View>

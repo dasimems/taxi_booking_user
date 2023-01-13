@@ -5,6 +5,7 @@ import {  Header, MessageCard, MessageNav, Modal, Nav } from '../components';
 import { useParamsContext } from '../context'; 
 import { Fontisto, Ionicons } from '@expo/vector-icons';
 import { chats, colors, statusBarHeight, windowHeight } from '../assets/data/data';
+import translate from '../translation';
 
 const ShowMessage = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -119,7 +120,7 @@ const ShowMessage = ({ route, navigation }) => {
 
                             <Ionicons name='camera-outline' size={28} color={colors.primary} />
 
-                            <Text style={{color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15}}>Camera</Text>
+                            <Text style={{color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15}}>{translate.t("camera")}</Text>
 
                         </TouchableOpacity>
 
@@ -127,7 +128,7 @@ const ShowMessage = ({ route, navigation }) => {
 
                             <Ionicons name='image-outline' size={28} color={colors.primary} />
 
-                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>Photos & Videos</Text>
+                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>{translate.t("photos")}</Text>
 
                         </TouchableOpacity>
 
@@ -135,7 +136,7 @@ const ShowMessage = ({ route, navigation }) => {
 
                             <Ionicons name='document-text-outline' size={28} color={colors.primary} />
 
-                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>Documents</Text>
+                            <Text style={{ color: "rgba(0, 0, 0, .7)", fontSize: 17, marginLeft: 15 }}>{translate.t("documents")}</Text>
 
                         </TouchableOpacity>
 
@@ -144,7 +145,7 @@ const ShowMessage = ({ route, navigation }) => {
                     <Pressable onPress={()=>{
                         setOtherOption(false)
                     }} style={{ padding: 15, width: "100%", alignItems: "center", backgroundColor: "white", borderRadius: 10 }}>
-                        <Text style={{fontSize: 17}}>Cancel</Text>
+                        <Text style={{fontSize: 17}}>{translate.t("cancel")}</Text>
                     </Pressable>
 
                 </View>

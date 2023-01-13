@@ -5,6 +5,7 @@ import { Header, Modal, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { card, colors, icons, statusBarHeight, transactions, windowHeight, withdrawalOptions } from '../assets/data/data';
+import translate from '../translation';
 
 const Wallet = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -32,7 +33,7 @@ const Wallet = ({ route, navigation }) => {
                 setHeaderHeight(height)
 
             }}>
-                <Text style={{ ...h1, textAlign: "left", marginVertical: 30 }}>Wallet</Text>
+                <Text style={{ ...h1, textAlign: "left", marginVertical: 30 }}>{translate.t("wallet")}</Text>
             </Header>
 
 
@@ -49,7 +50,7 @@ const Wallet = ({ route, navigation }) => {
                                 <View style={{width: "100%", flexDirection: "row", justifyContent: "space-between"}}>
 
                                     <View>
-                                        <Text style={{color: "rgba(255, 255, 255, .5)"}}>Current Balance</Text>
+                                        <Text style={{color: "rgba(255, 255, 255, .5)"}}>{translate.t("currentBalance")}</Text>
                                         <Text style={{color: "white", fontSize: 27, marginTop: 6}}>${card.balance.toLocaleString()}</Text>
                                     </View>
 
@@ -78,11 +79,11 @@ const Wallet = ({ route, navigation }) => {
                                 <TouchableOpacity style={{width: "45%", backgroundColor: colors.primary, paddingVertical: 15, alignItems: "center", justifyContent: "center", borderRadius: 10}} onPress={()=>{
                                     setWithdrawalActive(true)
                                 }}>
-                                    <Text style={{color: "white", fontSize: 16}}>Withdraw</Text>
+                                    <Text style={{color: "white", fontSize: 16}}>{translate.t("withdraw")}</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={{ width: "45%", backgroundColor: colors.primary, paddingVertical: 15, alignItems: "center", justifyContent: "center", borderRadius: 10, marginLeft: "10%" }}>
-                                    <Text style={{ color: "white", fontSize: 16 }}>Top Up</Text>
+                                    <Text style={{ color: "white", fontSize: 16 }}>{translate.t("topUp")}</Text>
                                 </TouchableOpacity>
 
                             </View>

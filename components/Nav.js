@@ -3,6 +3,7 @@ import React, { memo } from 'react'
 import { navLinks } from '../assets/data/data'
 import { useParamsContext } from '../context'
 import { useNavigation } from '@react-navigation/native'
+import translate from '../translation'
 
 
 const Nav = ({style, ...props}) => {
@@ -54,7 +55,7 @@ const Nav = ({style, ...props}) => {
 
                                     <Image source={activeParam.toLowerCase() === label.toLowerCase() ? activeIcon : inActiveIcon} style={{ width: 20, height: 20, resizeMode: "contain", marginBottom: 9 }} />
 
-                                    <Text style={{ width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14 }}>{item.label}</Text>
+                                    <Text style={{ width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14 }}>{translate.t(item.label.toLowerCase())}</Text>
 
                                 </Pressable>
 
@@ -67,7 +68,7 @@ const Nav = ({style, ...props}) => {
 
                                 <Image source={activeParam.toLowerCase() === label.toLowerCase()? activeIcon: inActiveIcon} style={{width: 20, height: 20, resizeMode: "contain", marginBottom: 9}} />    
 
-                                <Text style={{width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14}}>{item.label}</Text>
+                                <Text style={{width: "100%", textAlign: "center", color: "rgba(0, 0, 0, .5)", fontSize: 14}}>{translate.t(item.label.toLowerCase())}</Text>
 
                             </TouchableOpacity>)
                         )

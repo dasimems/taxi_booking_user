@@ -4,6 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { Button, LogoHeader, UserCard, UserTypeList } from '../components';
 import { userTypeLinks } from '../assets/data/data';
 import { useRegisterContext, useUserContext } from '../context';
+import translate from '../translation';
 
 const UserType = ({navigation}) => {
 
@@ -32,7 +33,7 @@ const UserType = ({navigation}) => {
 
             <View style={{width: "100%", alignItems: "center", marginVertical: 20}}>
 
-              <Text style={{...pDefault, fontSize: 22}}>Are you a</Text>
+              <Text style={{...pDefault, fontSize: 22}}>{translate.t("userTypeQuestion")}</Text>
 
 
               <FlatList
@@ -62,9 +63,9 @@ const UserType = ({navigation}) => {
             </View>
 
             <Button onPress={()=>{
-              navigation.navigate("Register")
+              navigation.navigate("Login")
             }} buttonDisabled={registerDetails.userType === ""? true: false }>
-              <Text style={{...buttonText}}>Next</Text>
+              <Text style={{...buttonText}}>{translate.t("next")}</Text>
             </Button>
 
           </View>

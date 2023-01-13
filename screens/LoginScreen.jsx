@@ -7,6 +7,9 @@ import {Button} from "../components"
 import { FontAwesome } from '@expo/vector-icons'; 
 import { useParamsContext, useRegisterContext, useUserContext } from '../context';
 
+import { getLocales, getCalendars } from 'expo-localization';
+import translate from '../translation';
+
 const LoginScreen = ({navigation}) => {
 
 
@@ -58,11 +61,12 @@ const LoginScreen = ({navigation}) => {
 
                 <LogoHeader />
 
-                <Text style={{...h1, fontFamily: "Roboto_700Bold"}}>Login to your account</Text>
+                  <Text style={{ ...h1, fontFamily: "Roboto_700Bold" }}>{translate.t("loginTitle")}</Text>
+                  {/* <Text style={{ color: "rgba(0, 0, 0, 1)" }}>Carmee,</Text> */}
 
-                <Text style={p}>Welcome back to <Text style={{color: "rgba(0, 0, 0, 1)"}}>Carmee,</Text> enter your details below to continue.</Text>
+                  <Text style={p}>{translate.t("loginSubtitle", { appName: "CarMee" })}</Text>
 
-                <Text style={{...label, width: "100%", marginTop: 20}}>Enter your phone</Text>
+                  <Text style={{ ...label, width: "100%", marginTop: 20 }}>{translate.t("phoneRequestLabel")}</Text>
 
                 <View style={{...loginInput, marginTop: 20}}>
 
@@ -93,7 +97,7 @@ const LoginScreen = ({navigation}) => {
                         dataDetectorTypes="phoneNumber" 
                         keyboardType="phone-pad" 
                         style={textInputStyle} 
-                        placeholder="Enter your phone" 
+                          placeholder={translate.t("phoneRequestLabel")} 
                           value={registerDetails.phoneNumber} 
                         onChangeText={(text)=>{
                             setRegisterDetails(prevState => {
@@ -112,11 +116,11 @@ const LoginScreen = ({navigation}) => {
                 
             </View>
 
-            <Pressable style={{marginTop: 40, alignItems: "center"}}>
+            {/* <Pressable style={{marginTop: 40, alignItems: "center"}}>
 
                 <Image source={faceId} style={{width: 31}} />
 
-            </Pressable>
+            </Pressable> */}
 
             <View style={{...styles.loginContainer}} >
 
@@ -124,15 +128,15 @@ const LoginScreen = ({navigation}) => {
                       navigation.navigate("Verification");
                       setActiveParam("Verification");
                 }}>
-                    <Text style={buttonText}>Continue</Text>
+                      <Text style={buttonText}>{translate.t("continue")}</Text>
                 </Button>
 
                 <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 0}}>
-                    <Text style={{...pDefault}}>Don't have an account?</Text>
+                      <Text style={{ ...pDefault }}>{translate.t("nonUserQuestion")}</Text>
 
                     <TouchableOpacity onPress={()=>{
-                        navigation.navigate("UserType")
-                    }}><Text style={{...pDefault, ...linkStyle, marginLeft: 5}}>Register</Text></TouchableOpacity>
+                        navigation.navigate("Register")
+                      }}><Text style={{ ...pDefault, ...linkStyle, marginLeft: 5 }}>{translate.t("register")}</Text></TouchableOpacity>
                 </View>
 
             </View>

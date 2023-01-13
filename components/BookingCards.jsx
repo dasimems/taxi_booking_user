@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors } from '../assets/data/data';
+import translate from '../translation';
 
 const BookingCards = ({data}) => {
 
@@ -100,7 +101,7 @@ const BookingCards = ({data}) => {
 
           <View style={{height: "100%", justifyContent: "flex-end", paddingVertical: 20, alignItems: "flex-end"}}>
 
-            <Text style={{ color: statusColor, fontSize: 17 }}>{status}</Text>
+            <Text style={{ color: statusColor, fontSize: 17 }}>{translate.t(status.toLowerCase())}</Text>
 
           </View>
 

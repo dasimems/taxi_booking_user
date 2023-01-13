@@ -4,6 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { BookingCards, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { bookingHeader, bookings, colors, statusBarHeight, windowHeight } from '../assets/data/data';
+import translate from '../translation';
 
 const Bookings = ({route}) => {
     const {parentContainerStyle} = AllStyle;
@@ -46,7 +47,7 @@ const Bookings = ({route}) => {
         setHeaderHeight(height)
 
       }}>
-            <Text style={{...h1, textAlign: "left", marginVertical: 30}}>Bookings</Text>
+            <Text style={{...h1, textAlign: "left", marginVertical: 30}}>{translate.t("bookings")}</Text>
 
             <View style={{flexDirection: "row"}}>
 
@@ -67,7 +68,7 @@ const Bookings = ({route}) => {
                     <TouchableOpacity onPress={()=>{
                       setActiveBookings(label.toLowerCase())
                     }} style={{ borderBottomWidth: activeBooking.toLowerCase() === label.toLowerCase() ? 3: 0, borderBottomColor: colors.primary, paddingBottom: 10, paddingHorizontal: 7 }}>
-                      <Text style={{fontWeight: activeBooking.toLowerCase() === label.toLowerCase()? "bold" : "normal", fontSize: 16 }}>{label}</Text>
+                      <Text style={{fontWeight: activeBooking.toLowerCase() === label.toLowerCase()? "bold" : "normal", fontSize: 16 }}>{translate.t(label.toLowerCase())}</Text>
                     </TouchableOpacity>
                   )
                 }}

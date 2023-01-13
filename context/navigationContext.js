@@ -2,9 +2,9 @@ import React, { useContext, useReducer } from "react";
 
 
 const initialValue = {
-    from: "",
-    to: "",
-    present: ""
+    from: null,
+    to: null,
+    present: null
 }
 
 const reducer = (state, action) => {

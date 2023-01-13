@@ -5,6 +5,7 @@ import { Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { colors, notification, statusBarHeight, windowHeight } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
+import translate from '../translation';
 
 const AllNotification = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -45,7 +46,7 @@ const AllNotification = ({ route, navigation }) => {
 
                         </TouchableOpacity>
 
-                        <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>Notifications</Text>
+                        <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>{translate.t("notifications")}</Text>
 
 
                     </View>

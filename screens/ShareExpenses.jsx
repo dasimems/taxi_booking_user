@@ -5,6 +5,7 @@ import { Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { expensesLabels, statusBarHeight, windowHeight } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
+import translate from '../translation';
 
 const ShareExpensesScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -44,7 +45,7 @@ const ShareExpensesScreen = ({ route, navigation }) => {
 
                     </TouchableOpacity>
 
-                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>Share Expenses</Text>
+                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>{translate.t("Share Expenses")}</Text>
 
 
                 </View>
@@ -85,8 +86,8 @@ const ShareExpensesScreen = ({ route, navigation }) => {
                                             <Image source={icon} style={{width: 60, height: 60, resizeMode: "contain"}} />
 
                                         <View style={{ flex: 1, marginLeft: 10}}>
-                                            <Text style={{fontSize: 19}}>{label}</Text>
-                                            <Text style={{fontSize: 16, color: "rgba(0, 0, 0, .5)", marginTop: 5}}>{description}</Text>
+                                            <Text style={{fontSize: 19}}>{translate.t(label.toLowerCase())}</Text>
+                                            <Text style={{fontSize: 16, color: "rgba(0, 0, 0, .5)", marginTop: 5}}>{translate.t(label.toLowerCase() + "Text")}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 )

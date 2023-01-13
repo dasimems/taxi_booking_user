@@ -4,6 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { HeaderOne } from '../components';
 import { colors, icons } from '../assets/data/data';
 import { useParamsContext, useRegisterContext, useUserContext } from '../context';
+import translate from '../translation';
 
 const Verification = ({navigation}) => {
 
@@ -103,7 +104,7 @@ const Verification = ({navigation}) => {
       if(codeOne !== "" || codeTwo !== "" || codeThree !== "" || codeFour !== ""){
         setBelowText("")
       }else if(wrongCode){
-        setBelowText("Invalid Code!")
+        setBelowText(translate.t("wrongCode"))
       }
 
       if(codeOne !== "" && codeTwo !== "" && codeThree !== "" && codeFour !== ""){
@@ -124,9 +125,9 @@ const Verification = ({navigation}) => {
 
               <Image source={icons.mailSent} style={{width: 70, height: 70, resizeMode: "contain"}} />
 
-              <Text style={{...h1, marginTop: 30}}>Verification</Text>
+              <Text style={{...h1, marginTop: 30}}>{translate.t("verification")}</Text>
 
-              <Text style={{...p}}>Enter Verification code that is sent to <Text style={{color: "black"}}>{`+${registerDetails.mobileCode}${registerDetails.phoneNumber}`}</Text> by SMS</Text>
+              <Text style={{...p}}>{translate.t("verifRequest", {number: `+${registerDetails.mobileCode}${registerDetails.phoneNumber}`})} </Text>
 
             </View>
 
@@ -256,10 +257,10 @@ const Verification = ({navigation}) => {
             
           </View>
 
-          {codeResent? <Text style={{color: "rgba(0, 0, 0, .5)"}}>Resend Code (0:30s)</Text> :<TouchableOpacity onPress={()=>{
+          {codeResent? <Text style={{color: "rgba(0, 0, 0, .5)"}}>{translate.t("resendCode")} (0:30s)</Text> :<TouchableOpacity onPress={()=>{
             resendVerifCode()
           }} >
-            <Text style={{color: colors.primary, fontSize: 18}}>Resend Code</Text>
+            <Text style={{color: colors.primary, fontSize: 18}}>{translate.t("resendCode")}</Text>
           </TouchableOpacity>}
 
 

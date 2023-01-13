@@ -15,5 +15,6 @@ import ShareExpensesScreen from "./ShareExpenses";
 import AllNotification from "./AllNotifications";
 import BankList from "./BankList";
 import NewAccount from "./NewAccount";
+import Languages from "./Languages";
 
-export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification, BankList, NewAccount };
+export { LoginScreen, UserType, RegisterScreen, Verification, FinalRegistration, Bookings, Inbox, Wallet, Profile, HomeScreen, ShowMessage, SettingsScreen, NotificationScreen, ShareExpensesScreen, AllNotification, BankList, NewAccount, Languages };

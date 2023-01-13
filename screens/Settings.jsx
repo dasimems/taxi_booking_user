@@ -5,6 +5,7 @@ import { Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { settingsLink, statusBarHeight, windowHeight } from '../assets/data/data';
 import { Fontisto } from '@expo/vector-icons';
+import translate from '../translation';
 
 const SettingsScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -44,7 +45,7 @@ const SettingsScreen = ({ route, navigation }) => {
 
                     </TouchableOpacity>
 
-                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10}}>Settings</Text>
+                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10}}>{translate.t("settings")}</Text>
 
 
                 </View>
@@ -68,7 +69,7 @@ const SettingsScreen = ({ route, navigation }) => {
                                 <TouchableOpacity style={{width: "100%", paddingHorizontal: 20, paddingTop: 10, paddingBottom: 15, flexDirection: "row", justifyContent: "space-between", alignItems: "center"}} onPress={()=>{
                                     navigation.navigate(screenName);
                                 }}>
-                                    <Text style={{fontSize: 16}}>{label}</Text>
+                                    <Text style={{fontSize: 16}}>{translate.t(label.toLowerCase())}</Text>
 
                                     <Fontisto name="angle-right" size={14} color="rgba(0, 0, 0, .4)" />
                                 </TouchableOpacity>

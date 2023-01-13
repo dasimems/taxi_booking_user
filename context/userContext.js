@@ -7,6 +7,7 @@ const initialValue = {
     token: ""
 }
 
+
 const reducer = (state, action) => {
 
     const {type, payload} = action;
@@ -14,10 +15,10 @@ const reducer = (state, action) => {
     switch(type){
 
         case "addDetails":
-
+            
             return {...state, userDetails: payload};
 
-        case "addToken":
+            case "addToken":
 
         return {...state, token: payload};
 
@@ -28,15 +29,15 @@ const reducer = (state, action) => {
 
         default: 
 
-            return state;
-
+        return state;
+        
     }
 }
 
 export const UserProvider = ({children}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialValue);
-
+    
     const addUserDetails = (details) => {
 
         return new Promise((resolve, reject) => {
