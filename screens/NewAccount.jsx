@@ -4,6 +4,7 @@ import AllStyle from '../assets/styles/Styles'
 import { Button, Header, Nav } from '../components';
 import { useParamsContext } from '../context';
 import { statusBarHeight, windowHeight, withdrawalOptions } from '../assets/data/data';
+import { useIsFocused } from '@react-navigation/native';
 
 import { Fontisto } from '@expo/vector-icons';
 
@@ -13,6 +14,7 @@ const NewAccount = ({ route, navigation }) => {
     const { setActiveParam } = useParamsContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0)
+    const isFocused = useIsFocused();
 
     const [newBankFromDetails, setNewBankFormDetails] = useState({
         bankName: "",
@@ -31,7 +33,7 @@ const NewAccount = ({ route, navigation }) => {
 
         setActiveParam(active);
 
-    }, [active])
+    }, [active, isFocused])
 
     useEffect(() => {
         var activeWithdrawOption = withdrawalOptions.filter(option => option.link === bankType);
