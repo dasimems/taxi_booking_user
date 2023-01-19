@@ -146,7 +146,7 @@ const HomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
     (async () => {
-      
+      Location.setGoogleApiKey(GOOGLE_PLACES_KEY);
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         console.log('Permission to access location was denied');

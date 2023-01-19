@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "CarMee",
+    "description": "",
     "slug": "CarMee",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,10 +26,37 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.dasimems.CarMee"
+      "package": "com.dasimems.CarMee",
+      "permissions":[
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECORD_AUDIO",
+        "VIBRATE",
+        "FOREGROUND_SERVICE",
+        "ACCESS_BACKGROUND_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA5xo5eiTATGBhWj6Z92YSYeQTMVkkN--U"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "",
+      "iosDisplayInForeground": "",
+      "androidMode": "collapse",
+      "androidCollapsedTitle": "CarMee"
+    },
+    "androidStatusBar": {
+      "hidden": true
+
     },
     "extra": {
       "eas": {
