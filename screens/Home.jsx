@@ -145,19 +145,25 @@ const HomeScreen = ({ route, navigation }) => {
     }, [userDetails])
 
     useEffect(() => {
-    (async () => {
+    (() => {
       Location.setGoogleApiKey(GOOGLE_PLACES_KEY);
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Permission to access location was denied');
-        return;
-      }
+      Location.requestForegroundPermissionsAsync().then(({status})=>{
 
-      let location = await Location.getCurrentPositionAsync({});
-      setPresent(location?.coords)
-    //   setTo(location?.coords)
+          if (status !== 'granted') {
+            console.log('Permission to access location was denied');
+            return;
+          }else{
 
-      let locations = await Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
+              Location.getCurrentPositionAsync({}).then(location => {
+
+                  setPresent(location?.coords)
+
+                  
+              });
+
+              Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
+          }
+      });
       return;
     })();
 

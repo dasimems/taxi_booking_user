@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CarMee",
-    "description": "",
+    "description": "Taxi booking app",
     "slug": "CarMee",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -49,8 +49,8 @@
     },
     "notification": {
       "icon": "./assets/icon.png",
-      "color": "",
-      "iosDisplayInForeground": "",
+      "color": "#82CA97",
+      "iosDisplayInForeground": true,
       "androidMode": "collapse",
       "androidCollapsedTitle": "CarMee"
     },
