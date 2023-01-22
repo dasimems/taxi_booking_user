@@ -6,17 +6,19 @@ import { useNavigationContext, useParamsContext, useUserContext } from '../conte
 import { colors, icons, images, passengers, statusBarHeight, windowHeight, windowWidth } from '../assets/data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, Ionicons, Entypo, Fontisto, FontAwesome5, FontAwesome } from '@expo/vector-icons';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import PlacesInput from 'react-native-places-input';
-import MapViewDirections from 'react-native-maps-directions';
-import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
 
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {GOOGLE_PLACES_KEY} from "@env";
 import translate from '../translation';
 import LoadingScreen from './LoadingScreen';
 import { useIsFocused } from '@react-navigation/native';
+
+//location and map services
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import PlacesInput from 'react-native-places-input';
+import MapViewDirections from 'react-native-maps-directions';
+import MapView, { Marker, PROVIDER_GOOGLE  } from 'react-native-maps';
+import * as Location from 'expo-location';
 
 const HomeScreen = ({ route, navigation }) => {
     const { parentContainerStyle } = AllStyle;
@@ -26,9 +28,8 @@ const HomeScreen = ({ route, navigation }) => {
     const {userDetails} = useUserContext();
     const [headerHeight, setHeaderHeight] = useState(0)
     const [navHeight, setNavHeight] = useState(0);
+    const [cords, setCords] = useState([]);
 
-    const [bottomContainerHeight, setBottomContainerHeight] = useState(0)
-    const [mainContainerHeight, setMainContainerHeight] = useState(0)
     const [selectedId, setSelectedId] = useState("");
     const [passengerDetails, setPassengerDetails] = useState(null);
     const [start, setStart] = useState(false)
@@ -51,7 +52,7 @@ const HomeScreen = ({ route, navigation }) => {
     const [comment, setComment] = useState("")
     const [finishButtonDisabled, setFinishButtonDisabled] = useState(true)
     const[passengerNumber, setPassengerNumber] = useState(1);
-    const mapRef = useRef("");
+    var mapRef = useRef("");
 
     const handleIncrease = useCallback(()=>{
         if(parseInt(passengerNumber) < 4){
@@ -65,16 +66,18 @@ const HomeScreen = ({ route, navigation }) => {
         }
     }, [passengerNumber])
 
-    const fitMap = () => {
+    const fitMap = useCallback(() => {
 
-        mapRef.current.fitToSuppliedMarkers(["present", "to"], {
-        top: 50,
-        left: 50,
-        bottom: 50,
-        right: 50
-    })
+        
+        mapRef.current.fitToCoordinates(cords, {
+            top: 50,
+            left: 50,
+            bottom: 50,
+            right: 50
+        })
 
-    }
+
+    }, [])
 
     useEffect(()=>{
         var {price, cancelation} = agreement
@@ -108,9 +111,9 @@ const HomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
 
-        if(!userDetails){
-            navigation.navigate("UserType");
-        }
+        // if(!userDetails){
+        //     navigation.navigate("UserType");
+        // }
 
         if(isFocused){
 
@@ -150,30 +153,32 @@ const HomeScreen = ({ route, navigation }) => {
           Location.setGoogleApiKey(GOOGLE_PLACES_KEY);
 
           if (status !== 'granted') {
-            console.log('Permission to access location was denied');
-            return;
+            // console.log('Permission to access location was denied');
           }else{
 
-        Location.getCurrentPositionAsync({}).then(location => {
 
-            setPresent(location?.coords)
+                Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000}).then(location => {
 
-            
-        });
+                    setPresent(location?.coords)
 
-            //   Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
+                    
+                });
+
+                Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
           }
       });
     })();
 
     
-  }, []);
+    }, []);
 
   useEffect(()=>{
 
-    if(!locationState.present || !locationState.to || !locationState.from) return;
+    if(locationState.to){
 
-    fitMap();
+        fitMap();
+    }
+
 
   }, [locationState])
 
@@ -296,75 +301,135 @@ const HomeScreen = ({ route, navigation }) => {
 
                     
                     <View style={{flex: 1, width: "100%", }}>
+                        {locationState.present && 
+                            // <MapView
+                            //     // onRegionChangeComplete={()=>{
 
-                        {locationState?.present && (
-                            <MapView
-                                // onRegionChangeComplete={()=>{
+                            //     //     fitMap();
 
-                                //     fitMap();
-
-                                // }}
-                                ref={mapRef}
-                                style={{height: "100%", flex: 1}}
-                                initialRegion={{
-                                    latitude: locationState?.present?.latitude? locationState?.present?.latitude : 37.78825,
-                                    longitude: locationState?.present?.longitude? locationState?.present?.longitude : -122.4324,
-                                    latitudeDelta: 0.005,
-                                    longitudeDelta: 0.005,
-                                }}
-                                showsUserLocation 
-                                mapType="mutedStandard"
+                            //     // }}
+                            //     ref={mapRef}
+                            //     style={{flex: 1}}
+                            //     initialRegion={{
+                            //         latitude: locationState?.present? locationState?.present?.latitude : 37.78825,
+                            //         longitude: locationState?.present? locationState?.present?.longitude : 37.78825,
+                            //         latitudeDelta: 0.005,
+                            //         longitudeDelta: 0.005,
+                            //     }}
+                            //     showsUserLocation 
+                            //     mapType="mutedStandard"
+                            //     provider={PROVIDER_GOOGLE}
                                 
+                            // >
+
+                            //     {locationState?.present && (
+                            //         <Marker
+                            //             coordinate={{
+                            //                 latitude: locationState?.present? locationState?.present?.latitude : 37.78825,
+                            //                 longitude: locationState?.present? locationState?.present?.longitude : -122.4324,
+                            //             }}
+                            //             title="Present Location"
+                            //             identifier='present'
+                            //             description=''
+                            //         >
+
+                            //             {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}
+
+                            //         </Marker>
+                            //     )}
+
+                            //     {/* {(locationState?.from?.latitude !== locationState?.present?.latitude || locationState?.from?.longitude !== locationState?.present?.longitude) && (
+                            //         <Marker
+                            //             coordinate={{
+                            //                 latitude: locationState?.from?.latitude? locationState?.from?.latitude : 37.78825,
+                            //                 longitude: locationState?.from?.longitude? locationState?.from?.longitude : -122.4324,
+                            //             }}
+                            //             title="Going from"
+                            //             identifier='from'
+                            //             description={locationState?.from?.name}
+                            //         >
+
+                            //             {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}{/*
+
+                            //         </Marker>
+                                
+                            //     )} */}
+
+                            //     {locationState?.to && (
+                            //         <Marker
+                            //             coordinate={{
+                            //                 latitude: locationState?.to? locationState?.to?.latitude : 37.78825,
+                            //                 longitude: locationState?.to? locationState?.to?.longitude : -122.4324,
+                            //             }}
+                            //             title="Your destination"
+                            //             identifier='to'
+                            //             description={locationState?.from?.name}
+                            //         >
+
+                            //             {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}
+
+                            //         </Marker>
+                            //     )}
+
+                            //     {locationState?.to && (
+                            //         <MapViewDirections
+                            //             origin={{
+                            //                 latitude: locationState?.present?.latitude,
+                            //                 longitude: locationState?.present?.longitude,
+                            //             }}
+                            //             destination={{
+                            //                 latitude: locationState?.to?.latitude,
+                            //                 longitude: locationState?.to?.longitude,
+                            //             }}
+                            //             strokeWidth={6}
+                            //             strokeColor={colors.primary}
+                            //             apikey={GOOGLE_PLACES_KEY}
+                            //         />
+                            //     )}
+
+
+                            // </MapView>
+
+                            <MapView
+                                ref={mapRef}
+                                style={{flex: 1}}
+                                onMapReady={()=>{
+                                    fitMap();
+                                }}
+                                initialRegion={{
+                                latitude: locationState?.present? locationState?.present?.latitude : 37.78825,
+                                longitude:locationState?.present? locationState?.present?.longitude : -122.4324,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                                }}
                             >
 
-                                {locationState?.present && (
-                                    <Marker
-                                        coordinate={{
-                                            latitude: locationState?.present?.latitude? locationState?.present?.latitude : 37.78825,
-                                            longitude: locationState?.present?.longitude? locationState?.present?.longitude : -122.4324,
-                                        }}
-                                        title="Present Location"
-                                        identifier='present'
-                                        description=''
-                                    >
+                                {locationState.present && <Marker
+                                    coordinate={{ 
+                                        latitude : locationState?.present? locationState?.present?.latitude : 37.78825,
+                                        longitude : locationState?.present? locationState?.present?.longitude : -122.4324
+                                     }}
+                                    title="Your Present Location"
+                                    identifier='present'
+                                />}
 
-                                        {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}
+                                {locationState.from && <Marker
+                                    coordinate={{ 
+                                        latitude : locationState?.from? locationState?.from?.latitude : 37.78825,
+                                        longitude : locationState?.from? locationState?.from?.longitude : -122.4324
+                                     }}
+                                    title="Going from"
+                                    identifier='from'
+                                />}
 
-                                    </Marker>
-                                )}
-
-                                {/* {(locationState?.from?.latitude !== locationState?.present?.latitude || locationState?.from?.longitude !== locationState?.present?.longitude) && (
-                                    <Marker
-                                        coordinate={{
-                                            latitude: locationState?.from?.latitude? locationState?.from?.latitude : 37.78825,
-                                            longitude: locationState?.from?.longitude? locationState?.from?.longitude : -122.4324,
-                                        }}
-                                        title="Going from"
-                                        identifier='from'
-                                        description={locationState?.from?.name}
-                                    >
-
-                                        {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}{/*
-
-                                    </Marker>
-                                
-                                )} */}
-
-                                {locationState?.to && (
-                                    <Marker
-                                        coordinate={{
-                                            latitude: locationState?.to?.latitude? locationState?.to?.latitude : 37.78825,
-                                            longitude: locationState?.to?.longitude? locationState?.to?.longitude : -122.4324,
-                                        }}
-                                        title="Your destination"
-                                        identifier='to'
-                                        description={locationState?.from?.name}
-                                    >
-
-                                        {/* <Image source={images.profileImage} style={{width: 20, height: 20, resizeMode: "contain", borderRadius: 50}} /> */}
-
-                                    </Marker>
-                                )}
+                                {locationState.to && <Marker
+                                    coordinate={{ 
+                                        latitude : locationState?.to? locationState?.to?.latitude : 37.78825,
+                                        longitude : locationState?.to? locationState?.to?.longitude : -122.4324
+                                     }}
+                                    title="Final destination"
+                                    identifier='to'
+                                />}
 
                                 {locationState?.to && (
                                     <MapViewDirections
@@ -382,9 +447,10 @@ const HomeScreen = ({ route, navigation }) => {
                                     />
                                 )}
 
-
                             </MapView>
-                        )}
+
+                        }
+
 
                         {start && <View style={{position: "absolute", top: 0, width: "100%", padding: 20, backgroundColor: "white", zIndex: 9, flexDirection: "row", alignItems: "flex-start", paddingTop: (statusBarHeight + 20)}}>
 
@@ -535,75 +601,27 @@ const HomeScreen = ({ route, navigation }) => {
 
                         <View style={{...loginInput, marginTop: 0, marginBottom: 10, flexDirection: "row", justifyContent: "space-between" }}>
 
-                            {/* <TextInput
-                                style={{flex: 1, paddingHorizontal: 12}}
-                                placeholder="Where would you like to go?"
-                                placeholderTextColor="rgba(0, 0, 0, .3)"
-                                value={locationState?.to}
-                                onChangeText={(text)=>{
-
-                                    setTo(text);
-
-                                }}
                             
-                            /> */}
 
-                            {/* <GooglePlacesAutocomplete
-                                styles={{
-                                    textInputContainer: {
-                                        backgroundColor: 'transparent',
-                                        height: "100%"
-                                    },
-                                    textInput: {
-                                        backgroundColor: 'transparent',
-                                        height: "100%",
-                                        color: '#5d5d5d',
-                                        fontSize: 16,
-                                    },
-                                    predefinedPlacesDescription: {
-                                        color: '#1faadb',
-                                    },
-                                    row: {
-                                        height: "100%"
-                                    },
-                                    listView: {
-                                        width: "100%",
-                                        maxHeight: 100,
-                                        flex: 1,
-                                        color: 'black', //To see where exactly the list is
-                                        zIndex: 1000, //To popover the component outwards
-                                        position: 'absolute',
-                                        bottom: 50
-                                    },
-                                }}
-                                enablePoweredByContainer={false}
-                                returnKeyType={"search"}
-                                placeholder='Where would you like to go?'
-                                nearbyPlacesAPI='GooglePlacesSearch'
-                                minLength={5}
-                                debounce={400}
-                                fetchDetails
-                                onPress={(data, details = null) => {
-                                    // 'details' is provided when fetchDetails = true
-                                    // console.log("data=>" + data);
-                                    console.log(details);
-                                }}
-                                onFail={err => console.log(err)}
-                                query={{
-                                    key: GOOGLE_PLACES_KEY,
-                                    language: 'en',
-                                }}
-                            /> */}
+                            
 
                             <PlacesInput
                                 googleApiKey={GOOGLE_PLACES_KEY}
                                 onSelect={place => {
                                     var {name, geometry} = place?.result || {};
-                                    var {location} = geometry || {};
-                                    var data = {name, latitude: location?.lat, longitude: location?.lng}
+
+                                    if(geometry){
+
+                                        var {location} = geometry || {};
+
+                                        if(location){
+                                            
+                                            var data = {name, latitude: location?.lat, longitude: location?.lng}
+
+                                            setTo(data)
+                                        }
+                                    }
                                     
-                                    setTo(data)
-                                    setFrom(data)
                                 }}
                                 elevation={0}
                                 placeHolder={translate.t("destinationQuestion")}

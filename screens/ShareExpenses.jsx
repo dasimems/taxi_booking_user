@@ -51,7 +51,7 @@ const ShareExpensesScreen = ({ route, navigation }) => {
 
                     </TouchableOpacity>
 
-                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>{translate.t("Share Expenses")}</Text>
+                    <Text style={{ ...h1, textAlign: "left", marginLeft: 10 }}>{translate.t("share expenses")}</Text>
 
 
                 </View>

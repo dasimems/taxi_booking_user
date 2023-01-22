@@ -61,11 +61,9 @@ export const NavigationProvider = ({ children }) => {
                 dispatch({ type: "setTo", payload: details })
                 resolve({ response: "To location saved successfully" })
             } else {
-                // reject({
-                //     response: "To Location not included"
-                // })
-
-                dispatch({ type: "setTo", payload: "" })
+                reject({
+                    response: "Present Location not included"
+                })
 
             }
 
@@ -75,8 +73,9 @@ export const NavigationProvider = ({ children }) => {
     const setPresent = (details) => {
         return new Promise((resolve, reject) => {
 
+            dispatch({ type: "present", payload: details })
+            
             if (details) {
-                dispatch({ type: "present", payload: details })
                 resolve({ response: "Present location saved successfully" })
             } else {
                 reject({
