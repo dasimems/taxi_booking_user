@@ -111,9 +111,9 @@ const HomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
 
-        // if(!userDetails){
-        //     navigation.navigate("UserType");
-        // }
+        if(!userDetails){
+            navigation.navigate("UserType");
+        }
 
         if(isFocused){
 
