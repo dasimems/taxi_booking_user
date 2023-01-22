@@ -146,25 +146,24 @@ const HomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
     (() => {
-      Location.setGoogleApiKey(GOOGLE_PLACES_KEY);
-      Location.requestForegroundPermissionsAsync().then(({status})=>{
+        Location.requestForegroundPermissionsAsync().then(({status})=>{
+          Location.setGoogleApiKey(GOOGLE_PLACES_KEY);
 
           if (status !== 'granted') {
             console.log('Permission to access location was denied');
             return;
           }else{
 
-              Location.getCurrentPositionAsync({}).then(location => {
+        Location.getCurrentPositionAsync({}).then(location => {
 
-                  setPresent(location?.coords)
+            setPresent(location?.coords)
 
-                  
-              });
+            
+        });
 
-              Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
+            //   Location.watchPositionAsync({ accuracy: Location.Accuracy.Lowest,  distanceInterval: 10 }, loc => setPresent(JSON.parse(JSON.stringify(loc.coords))))
           }
       });
-      return;
     })();
 
     
